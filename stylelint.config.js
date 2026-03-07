@@ -2,7 +2,7 @@ import order from 'stylelint-order';
 import scss from 'stylelint-scss';
 
 export default {
-  plugins: [order, scss],
+  plugins: [order, scss, 'stylelint-declaration-strict-value'],
   extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
   rules: {
     'no-empty-source': null,
@@ -33,6 +33,13 @@ export default {
       true,
       {
         ignoreProperties: ['clip'],
+      },
+    ],
+    'scale-unlimited/declaration-strict-value': [
+      ['/color/'],
+      {
+        ignoreValues: ['inherit', 'transparent', 'currentColor', 'none'],
+        disableFix: false,
       },
     ],
   },

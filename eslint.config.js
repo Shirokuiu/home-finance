@@ -1,19 +1,28 @@
 import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
+import prettierConfig from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
-import prettier from 'eslint-plugin-prettier';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  // Базовые пресеты
+  {
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      'coverage/**',
+      '.vite/**',
+      '**/*.d.ts',
+      'src/store/slices/generated/**',
+      '**/generated/**',
+    ],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
-
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
-
+    files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
@@ -22,76 +31,76 @@ export default tseslint.config(
         ecmaFeatures: { jsx: true },
       },
     },
-
     plugins: {
-      react,
+      '@typescript-eslint': tseslint.plugin,
+      react: reactPlugin,
       'react-hooks': reactHooks,
       'jsx-a11y': jsxA11y,
       import: importPlugin,
-      prettier,
-      '@typescript-eslint': tseslint.plugin,
     },
-
     settings: {
       react: { version: 'detect' },
-      'import/resolver': { typescript: {} },
+      'import/resolver': {
+        typescript: {
+          project: './tsconfig.json',
+        },
+      },
     },
-
-    ignores: [
-      '**/*.css',
-      '**/*.svg',
-      '**/*.test.ts',
-      '**/*.test.tsx',
-      'node_modules/**',
-      'dist/**',
-      'build/**',
-    ],
-
     rules: {
-      'no-console': 'error',
-      'react/jsx-key': [
+      ...reactPlugin.configs.flat.recommended.rules,
+      ...reactPlugin.configs.flat['jsx-runtime'].rules,
+      ...reactHooks.configs.flat.recommended.rules,
+      ...jsxA11y.configs.recommended.rules,
+      ...importPlugin.configs.recommended.rules,
+      ...importPlugin.configs.typescript.rules,
+      'array-callback-return': ['error', { allowImplicit: false }],
+      curly: ['error', 'all'],
+      eqeqeq: ['error', 'always', { null: 'ignore' }],
+      'no-alert': 'error',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-param-reassign': [
         'error',
         {
-          checkFragmentShorthand: true,
-          checkKeyMustBeforeSpread: true,
-          warnOnDuplicates: true,
+          props: true,
+          ignorePropertyModificationsFor: ['state', 'draft'],
         },
       ],
-      'no-use-before-define': 'off',
-      'react/jsx-props-no-spreading': 'warn',
-      '@typescript-eslint/no-use-before-define': ['error'],
+      'react/prop-types': 'off',
+      'react/require-default-props': 'off',
       'react/react-in-jsx-scope': 'off',
-      'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
-      'import/extensions': ['error', 'ignorePackages', { ts: 'never', tsx: 'never' }],
-      'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': 'error',
-      'no-shadow': 'off',
-      '@typescript-eslint/no-shadow': ['error'],
-      'max-len': [
-        'warn',
-        {
-          code: 180,
-          ignorePattern: '^import\\s.+\\sfrom\\s.+;$',
-          ignoreUrls: true,
-        },
-      ],
+      'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.tsx'] }],
+      'react/jsx-props-no-spreading': 'warn',
+      'react/prefer-read-only-props': 'error',
+      'react/jsx-boolean-value': ['error', 'never'],
+      'react/self-closing-comp': 'error',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'import/prefer-default-export': 'off',
-      'react/prop-types': 'off',
-      'react/button-has-type': 'off',
-      'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-      'no-param-reassign': 0,
-      'react/require-default-props': 'off',
-      'jsx-a11y/label-has-associated-control': ['error', { required: { some: ['nesting', 'id'] } }],
-      'jsx-a11y/label-has-for': ['error', { required: { some: ['nesting', 'id'] } }],
-      'jsx-a11y/no-noninteractive-element-interactions': 'off',
-      'jsx-a11y/click-events-have-key-events': 'off',
-      'jsx-a11y/anchor-is-valid': 'off',
-      'jsx-a11y/no-static-element-interactions': 'off',
-      'jsx-a11y/no-noninteractive-tabindex': 'off',
-      'prettier/prettier': 'error',
+      'no-use-before-define': 'off',
+      '@typescript-eslint/no-use-before-define': ['error'],
+      '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+      'no-shadow': 'off',
+      '@typescript-eslint/no-shadow': ['error'],
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'no-undef': 'off',
+      'import/no-unresolved': 'error',
+      'import/named': 'error',
+      'import/default': 'error',
+      'import/namespace': 'error',
+      'import/extensions': [
+        'error',
+        'ignorePackages',
+        {
+          js: 'never',
+          jsx: 'never',
+          ts: 'never',
+          tsx: 'never',
+        },
+      ],
+      'import/prefer-default-export': 'off',
+      'import/no-duplicates': 'error',
+      'import/newline-after-import': ['error', { count: 1 }],
+      ...prettierConfig.rules,
     },
   },
 );

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from 'src/store/root-reducer';
+import { rootReducer } from 'src/store/rootReducer';
 import { api } from 'src/services/api';
-import { State } from 'src/store/types/state';
+import type { State } from 'src/store/types/state';
 
 export const createMockStore = (preloadedState?: Partial<State>) =>
   configureStore({

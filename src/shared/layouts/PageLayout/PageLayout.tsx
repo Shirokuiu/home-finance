@@ -2,7 +2,7 @@ import { Spin } from 'antd';
 import { useMemo } from 'react';
 
 import { getPlatform } from 'src/shared/helpers';
-import { PageLayoutProps } from 'src/shared/layouts/PageLayout/types';
+import type { PageLayoutProps } from 'src/shared/layouts/PageLayout/types';
 import './page-layout.scss';
 
 function PageLayout({
@@ -33,7 +33,7 @@ function PageLayout({
       >
         {footerSlot}
       </div>
-      <div className="page-layout__footer-fixed-placeholder" aria-hidden={true}>
+      <div className="page-layout__footer-fixed-placeholder" aria-hidden>
         {footerFixedSlot}
       </div>
       <div
