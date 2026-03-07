@@ -5,45 +5,44 @@
 
 @mixin reset-list {
   @include reset;
+
   list-style: none;
 }
 
 @mixin reset-button {
   @include reset;
-  box-sizing: border-box;
-  border: none;
+
   background-color: transparent;
+  border: none;
+  box-sizing: border-box;
   outline: none;
 }
 
 @mixin reset-input {
   @include reset;
   @include reset-button;
+
   display: block;
   width: 100%;
 }
 
 @mixin hidden {
-  position: absolute;
-  width: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%); // stylelint-disable-line
   height: 1px;
   margin: -1px;
-  border: 0;
-  padding: 0;
   overflow: hidden;
+  padding: 0;
+  position: absolute;
   white-space: nowrap;
-  clip: rect(0 0 0 0);
-  clip-path: inset(100%);
-  -webkit-clip-path: inset(100%); // stylelint-disable-line
+  width: 1px;
 }
 
 @mixin center-absolute {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   margin: auto;
+  position: absolute;
 }
 
 @mixin out($color: '#80bdff') {
@@ -51,46 +50,45 @@
 
   &:focus {
     border-color: $color;
-    outline: 0;
     box-shadow: 0 0 0 0.2rem rgba($color, 0.5);
+    outline: 0;
   }
 }
 
 @mixin placeholder($fontFamily, $fontSize, $fontWeight, $color) {
-
-  &::-webkit-input-placeholder {
-    font-size: $fontSize;
+  &::input-placeholder {
+    color: $color;
     font-family: $fontFamily, sans-serif;
+    font-size: $fontSize;
     font-weight: $fontWeight;
     line-height: $fontSize + 4;
-    color: $color;
     opacity: 1;
   }
 
   &:-moz-input-placeholder {
-    font-size: $fontSize;
+    color: $color;
     font-family: $fontFamily, sans-serif;
+    font-size: $fontSize;
     font-weight: $fontWeight;
     line-height: $fontSize + 4;
-    color: $color;
     opacity: 1;
   }
 
-  &::-moz-placeholder {
-    font-size: $fontSize;
+  &::placeholder {
+    color: $color;
     font-family: $fontFamily, sans-serif;
+    font-size: $fontSize;
     font-weight: $fontWeight;
     line-height: $fontSize + 4;
-    color: $color;
     opacity: 1;
   }
 
-  &:-ms-input-placeholder {
-    font-size: $fontSize;
+  &:input-placeholder {
+    color: $color;
     font-family: $fontFamily, sans-serif;
+    font-size: $fontSize;
     font-weight: $fontWeight;
     line-height: $fontSize + 4;
-    color: $color;
     opacity: 1;
   }
 }
