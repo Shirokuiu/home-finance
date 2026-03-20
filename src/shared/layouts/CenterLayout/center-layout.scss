@@ -2,8 +2,11 @@
 
 .center-layout {
   margin: 0 auto;
-  max-width: sizes.$screen-desktop-l;
-  padding: 0 20px;
+  padding: 0 25px;
+
+  @media (min-width: sizes.$screen-desktop-l) {
+    max-width: 1150px;
+  }
 
   @media (max-width: sizes.$screen-mobile-m) {
     padding: 0 10px;
