@@ -4,7 +4,14 @@
 // 10 - #000000
 
 :root {
-  --body-bg-primary: #f9fafb;
+  // bg
+  --theme-bg-primary: #f9fafb;
+  --theme-bg-secondary: #fff;
+  --theme-bg-tertiary: #f3f3f7;
+
+  // color
+  --theme-tp-color-primary: #3699fa;
+  --theme-tp-color-secondary: #7e8299;
 }
 
 [data-theme='dark'] { // stylelint-disable-line

@@ -1,0 +1,28 @@
+.main-header {
+  background-color: var(--theme-bg-secondary);
+  padding: 15px 0;
+
+  &__nav {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__nav-item-link {
+    color: var(--theme-tp-color-secondary);
+    display: block;
+    padding: 9px 15px;
+    text-decoration: none;
+    transition: .3s ease;
+
+    &:hover {
+      background-color: var(--theme-bg-tertiary);
+      color: var(--theme-tp-color-primary);
+    }
+
+    &--active {
+      background-color: var(--theme-bg-tertiary);
+      color: var(--theme-tp-color-primary);
+      cursor: default;
+    }
+  }
+}
