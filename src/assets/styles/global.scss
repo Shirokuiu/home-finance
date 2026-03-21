@@ -1,10 +1,12 @@
+@use "mixins";
+
 html,
 body {
   height: 100%;
 }
 
 body {
-  background-color: var(--body-bg-primary);
+  background-color: var(--theme-bg-primary);
 }
 
 #root {
@@ -14,5 +16,9 @@ body {
 img {
   height: auto;
   width: 100%;
+}
+
+.reset-list {
+  @include mixins.reset-list;
 }
 

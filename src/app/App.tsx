@@ -3,12 +3,13 @@ import { Route, Routes } from 'react-router-dom';
 import MainPage from 'src/pages/MainPage/MainPage';
 import { PageRoutes } from 'src/shared/constants/routes';
 import WrappedSvgSprite from 'src/shared/hocks/WrappedSvgSprite/WrappedSvgSprite';
+import RootPage from 'src/pages/RootPage/RootPage';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path={PageRoutes.Index}>
+        <Route path={PageRoutes.Index} element={<RootPage />}>
           <Route index element={<MainPage />} />
         </Route>
       </Routes>

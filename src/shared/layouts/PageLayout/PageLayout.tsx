@@ -22,12 +22,12 @@ function PageLayout({
       className={`page-layout ${fullHeight ? 'page-layout--full-height' : ''} ${className ?? ''}`.trim()}
     >
       {isLoading && <Spin className="page-layout__spinner" />}
-      <div className="page-layout__header">{headerSlot}</div>
-      <div
+      <header className="page-layout__header">{headerSlot}</header>
+      <main
         className={`page-layout__content ${clearPageContentPadding ? 'page-layout__content--clear-padding' : ''} ${isLoading ? 'page-layout__content--is-loading' : ''}`.trim()}
       >
         {children}
-      </div>
+      </main>
       <div
         className={`page-layout__footer-wrap ${!footerSlot ? 'page-layout__footer-wrap--clear-padding' : ''} ${isLoading ? 'page-layout__footer-wrap--is-loading' : ''}`.trim()}
       >
