@@ -1,0 +1,26 @@
+.summary-card-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+
+  &--wallet {
+    background-color: var(--theme-bg-quinary);
+    color: #3699ff;
+  }
+
+  &--chart-line,
+  &--piggy-bank {
+    background-color: #c9f7f5;
+    color: #1bc5bd;
+  }
+
+  &--calendar {
+    background-color: #eee5ff;
+    color: #8950fc;
+  }
+
+  &__svg {
+    width: 11px;
+    height: 11px;
+  }
+}

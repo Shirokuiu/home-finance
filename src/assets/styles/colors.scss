@@ -8,12 +8,19 @@
   --theme-bg-primary: #f9fafb;
   --theme-bg-secondary: #fff;
   --theme-bg-tertiary: #f3f3f7;
+  --theme-bg-quaternary: #fff;
+  --theme-bg-quinary: #e1f0ff;
 
   // color
   --theme-tp-color-primary: #3699fa;
   --theme-tp-color-secondary: #7e8299;
+  --theme-tp-color-tertiary: #3f4254;
+
+  // box-shadow
+  --theme-shadow-primary: 0 0 30px 0 rgb(82 63 105 / 5%);
 }
 
 [data-theme='dark'] { // stylelint-disable-line
-
+  // color
+  --theme-tp-color-tertiary: #e9ecef;
 }
