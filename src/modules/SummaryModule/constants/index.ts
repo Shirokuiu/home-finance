@@ -1,7 +1,5 @@
-import {
-  SvgSpriteIconId,
-  type SvgSpriteIconIdValue,
-} from 'src/shared/components/SvgSpriteIcon/types';
+import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
+import type { SvgSpriteIconIdValue } from 'src/shared/components/SvgSpriteIcon/types';
 
 export const IconIdCssModMap: Partial<Record<SvgSpriteIconIdValue, string>> = {
   [SvgSpriteIconId.Wallet]: 'summary-card-icon--wallet',

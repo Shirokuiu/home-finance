@@ -1,7 +1,7 @@
-import { type SvgSpriteIconIdValue } from 'src/shared/components/SvgSpriteIcon/types';
 import SvgSpriteIcon from 'src/shared/components/SvgSpriteIcon/SvgSpriteIcon';
 import { Flex } from 'antd';
 import { IconIdCssModMap } from 'src/modules/SummaryModule/constants';
+import type { SvgSpriteIconIdValue } from 'src/shared/components/SvgSpriteIcon/types';
 
 import './summary-card-icon.scss';
 

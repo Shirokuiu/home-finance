@@ -1,5 +1,5 @@
 import SummaryCard from 'src/modules/SummaryModule/SummaryCard/SummaryCard';
-import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/types';
+import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
 
 import './summary-module.scss';
 
@@ -13,7 +13,7 @@ function SummaryModule() {
         }}
         iconId={SvgSpriteIconId.Wallet}
         title="Общий баланс"
-        summary="449466,86 ₽"
+        summary="449 466,86 ₽"
         className="summary-module__card"
       />
       <SummaryCard
@@ -23,7 +23,7 @@ function SummaryModule() {
         }}
         iconId={SvgSpriteIconId.ChartLine}
         title="Расходы за период"
-        summary="+46014,72 ₽"
+        summary="+46 014,72 ₽"
         className="summary-module__card"
       />
       <SummaryCard
@@ -33,7 +33,7 @@ function SummaryModule() {
         }}
         iconId={SvgSpriteIconId.Calendar}
         title="Доходы за период"
-        summary="+300014,72 ₽"
+        summary="+300 014,72 ₽"
         className="summary-module__card"
       />
       <SummaryCard
@@ -43,7 +43,7 @@ function SummaryModule() {
         }}
         iconId={SvgSpriteIconId.PiggyBank}
         title="Сбережения"
-        summary="+200014,72 ₽"
+        summary="+200 014,72 ₽"
         className="summary-module__card"
       />
     </section>

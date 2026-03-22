@@ -1,9 +1,9 @@
 import { Flex } from 'antd';
 import SummaryCardIcon from 'src/modules/SummaryModule/SummaryCardicon/SummaryCardIcon';
-import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/types';
 import SvgSpriteIcon from 'src/shared/components/SvgSpriteIcon/SvgSpriteIcon';
 import type { PropsWithCssClassName } from 'src/shared/types/shared';
 import type { SummaryCardProps } from 'src/modules/SummaryModule/types';
+import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
 
 import './summary-card.scss';
 
