@@ -12,6 +12,24 @@
   url('../fonts/roboto-v30-latin_cyrillic-regular.ttf') format('truetype'), /* Safari, Android, iOS */
 }
 
+/* roboto-500 - cyrillic_latin */
+@font-face {
+  font-family: Roboto;
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  src: url('../fonts/roboto-v51-cyrillic_latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* roboto-600 - cyrillic_latin */
+@font-face {
+  font-family: Roboto;
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  src: url('../fonts/roboto-v51-cyrillic_latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 /* roboto-700 - latin_cyrillic */
 @font-face {
   font-family: Roboto;
@@ -26,7 +44,7 @@
 
 body {
   @include mixins.tp-14-16-400;
-  @include mixins.tp-color-gray-9;
+  @include mixins.tp-color-gray-900;
 
   font-family: Roboto, sans-serif;
   font-style: normal;
@@ -52,8 +70,8 @@ body {
 //  line-height: 24px;
 // }
 
-.tp-13-15-500 {
-  @include mixins.tp-13-15-500;
+.tp-13-15-400 {
+  @include mixins.tp-13-15-400;
 }
 
 .tp-14-16-400 {
@@ -62,6 +80,14 @@ body {
 
 .tp-14-16-500 {
   @include mixins.tp-14-16-500;
+}
+
+.tp-16-18-400 {
+  @include mixins.tp-16-18-400;
+}
+
+.tp-18-20-600 {
+  @include mixins.tp-18-20-600;
 }
 
 .tp-19-23-400 {
@@ -88,13 +114,21 @@ body {
   @include mixins.theme-tp-color-tertiary;
 }
 
-.tp-color-gray-9 {
-  @include mixins.tp-color-gray-9;
+.tp-color-gray-300 {
+  @include mixins.tp-color-gray-300;
+}
+
+.tp-color-gray-800 {
+  @include mixins.tp-color-gray-800;
+}
+
+.tp-color-gray-900 {
+  @include mixins.tp-color-gray-900;
 }
 
 *::input-placeholder {
   @include mixins.tp-19-23-400;
-  @include mixins.tp-color-gray-9;
+  @include mixins.tp-color-gray-900;
 
   font-family: Roboto, sans-serif;
   opacity: 1;
@@ -102,7 +136,7 @@ body {
 
 *:-moz-input-placeholder {
   @include mixins.tp-19-23-400;
-  @include mixins.tp-color-gray-9;
+  @include mixins.tp-color-gray-900;
 
   font-family: Roboto, sans-serif;
   opacity: 1;
@@ -111,7 +145,7 @@ body {
 
 *::placeholder {
   @include mixins.tp-19-23-400;
-  @include mixins.tp-color-gray-9;
+  @include mixins.tp-color-gray-900;
 
   font-family: Roboto, sans-serif;
   opacity: 1;
@@ -119,7 +153,7 @@ body {
 
 *:input-placeholder {
   @include mixins.tp-19-23-400;
-  @include mixins.tp-color-gray-9;
+  @include mixins.tp-color-gray-900;
 
   font-family: Roboto, sans-serif;
   opacity: 1;

@@ -1,0 +1,54 @@
+@use "src/assets/styles/mixins";
+
+.top-categories-card {
+  padding: 16px;
+  background-color: #fff;
+
+  &__icon-wrap {
+    width: 48px;
+    height: 48px;
+    margin-right: 16px;
+    border-radius: 10px;
+    background-color: #f2f4f6;
+    color: #16A34A;
+  }
+
+  &__budget-status {
+    margin-left: auto;
+  }
+
+  &__remaining-progress-wrap {
+    position: relative;
+    width: 128px;
+    height: 6px;
+    border-radius: 10px;
+    background-color: #f2f4f6;
+  }
+
+  &__remaining-amount {
+    &.tp-reset {
+      margin-bottom: 4px;
+    }
+  }
+
+  &__remaining-progress {
+    @include mixins.center-absolute;
+
+    right: auto;
+    left: 0;
+    width: 70%;
+    border-radius: 10px;
+
+    &--high {
+      background-color: #34d399;
+    }
+
+    &--medium {
+      background-color: #fbbf24;
+    }
+
+    &--low {
+      background-color: #f87171;
+    }
+  }
+}

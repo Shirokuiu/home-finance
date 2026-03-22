@@ -9,6 +9,8 @@
   }
 
   &__change {
+    align-self: flex-end;
+
     &--positive {
       color: #1bc5bd;
     }

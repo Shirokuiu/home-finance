@@ -18,9 +18,9 @@ function SummaryCard({
     <div className={`summary-card ${className ?? ''}`.trim()}>
       <Flex align="center" gap={7} className="summary-card__title-wrap">
         <SummaryCardIcon iconId={iconId} />
-        <p className="tp-reset tp-13-15-500 tp-color-theme-tertiary summary-card__title">{title}</p>
+        <p className="tp-reset tp-13-15-400 tp-color-theme-tertiary summary-card__title">{title}</p>
       </Flex>
-      <Flex align="center" gap="4px">
+      <Flex gap="4px">
         <p className="tp-reset tp-25-26-500 tp-color-theme-tertiary summary-card__result">
           {summary}
         </p>
@@ -34,7 +34,9 @@ function SummaryCard({
             height={17}
             id={SvgSpriteIconId.CaretUp}
           />
-          <span className="tp-14-16-500">{periodChangeConfig.value}</span>
+          <span className="tp-14-16-500 summary-card__change-value">
+            {periodChangeConfig.value}
+          </span>
         </Flex>
       </Flex>
     </div>

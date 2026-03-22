@@ -1,0 +1,15 @@
+.top-categories-module {
+  &__title-wrap {
+    margin-bottom: 16px;
+  }
+
+  &__edit-link {
+    color: #3699ff;
+    text-decoration: none;
+    transition: .15s ease;
+
+    &:hover {
+      color: rgb(0 115 233);
+    }
+  }
+}
