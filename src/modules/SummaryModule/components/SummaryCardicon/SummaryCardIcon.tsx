@@ -3,7 +3,7 @@ import { Flex } from 'antd';
 import { IconIdCssModMap } from 'src/modules/SummaryModule/constants';
 import type { SvgSpriteIconIdValue } from 'src/shared/components/SvgSpriteIcon/types';
 
-import './summary-card-icon.scss';
+import 'src/modules/SummaryModule/components/SummaryCardicon/summary-card-icon.scss';
 
 function SummaryCardIcon({ iconId }: { readonly iconId: SvgSpriteIconIdValue }) {
   return (

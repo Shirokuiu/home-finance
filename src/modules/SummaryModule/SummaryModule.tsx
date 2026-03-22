@@ -1,4 +1,4 @@
-import SummaryCard from 'src/modules/SummaryModule/SummaryCard/SummaryCard';
+import SummaryCard from 'src/modules/SummaryModule/components/SummaryCard/SummaryCard';
 import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
 import type { PropsWithCssClassName } from 'src/shared/types/shared';
 
