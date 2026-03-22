@@ -1,11 +1,12 @@
-import SummaryCard from 'src/modules/SummaryModule/SummaryCard/SummaryCard';
+import SummaryCard from 'src/modules/SummaryModule/components/SummaryCard/SummaryCard';
 import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
+import type { PropsWithCssClassName } from 'src/shared/types/shared';
 
 import './summary-module.scss';
 
-function SummaryModule() {
+function SummaryModule({ className }: PropsWithCssClassName) {
   return (
-    <section className="summary-module">
+    <section className={`summary-module ${className ?? ''}`.trim()}>
       <SummaryCard
         periodChangeConfig={{
           type: 'positive',

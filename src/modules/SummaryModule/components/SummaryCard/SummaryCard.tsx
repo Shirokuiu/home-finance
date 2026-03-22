@@ -1,11 +1,11 @@
 import { Flex } from 'antd';
-import SummaryCardIcon from 'src/modules/SummaryModule/SummaryCardicon/SummaryCardIcon';
+import SummaryCardIcon from 'src/modules/SummaryModule/components/SummaryCardicon/SummaryCardIcon';
 import SvgSpriteIcon from 'src/shared/components/SvgSpriteIcon/SvgSpriteIcon';
 import type { PropsWithCssClassName } from 'src/shared/types/shared';
 import type { SummaryCardProps } from 'src/modules/SummaryModule/types';
 import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
 
-import './summary-card.scss';
+import 'src/modules/SummaryModule/components/SummaryCard/summary-card.scss';
 
 function SummaryCard({
   iconId,
@@ -18,9 +18,9 @@ function SummaryCard({
     <div className={`summary-card ${className ?? ''}`.trim()}>
       <Flex align="center" gap={7} className="summary-card__title-wrap">
         <SummaryCardIcon iconId={iconId} />
-        <p className="tp-reset tp-13-15-500 tp-color-theme-tertiary summary-card__title">{title}</p>
+        <p className="tp-reset tp-13-15-400 tp-color-theme-tertiary summary-card__title">{title}</p>
       </Flex>
-      <Flex align="center" gap="4px">
+      <Flex gap="4px">
         <p className="tp-reset tp-25-26-500 tp-color-theme-tertiary summary-card__result">
           {summary}
         </p>
@@ -34,7 +34,9 @@ function SummaryCard({
             height={17}
             id={SvgSpriteIconId.CaretUp}
           />
-          <span className="tp-14-16-500">{periodChangeConfig.value}</span>
+          <span className="tp-14-16-500 summary-card__change-value">
+            {periodChangeConfig.value}
+          </span>
         </Flex>
       </Flex>
     </div>
