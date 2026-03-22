@@ -1,11 +1,11 @@
 import CenterLayout from 'src/shared/layouts/CenterLayout/CenterLayout';
 import { NavLink } from 'react-router-dom';
 import { PageRoutes } from 'src/shared/constants/routes';
-import { getNavItemClassName } from 'src/modules/MainHeader/helpers';
+import { getNavItemClassName } from 'src/modules/MainHeaderModule/helpers';
 
 import './main-header.scss';
 
-function MainHeader() {
+function MainHeaderModule() {
   return (
     <div className="main-header">
       <CenterLayout>
@@ -21,4 +21,4 @@ function MainHeader() {
   );
 }
 
-export default MainHeader;
+export default MainHeaderModule;

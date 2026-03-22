@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-import MainPage from 'src/pages/MainPage/MainPage';
+import DashboardPage from 'src/pages/DashboardPage/DashboardPage';
 import { PageRoutes } from 'src/shared/constants/routes';
 import WrappedSvgSprite from 'src/shared/hocks/WrappedSvgSprite/WrappedSvgSprite';
 import RootPage from 'src/pages/RootPage/RootPage';
@@ -10,7 +10,7 @@ function App() {
     <>
       <Routes>
         <Route path={PageRoutes.Index} element={<RootPage />}>
-          <Route index element={<MainPage />} />
+          <Route index element={<DashboardPage />} />
         </Route>
       </Routes>
       <WrappedSvgSprite />

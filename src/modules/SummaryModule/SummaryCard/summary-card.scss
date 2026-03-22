@@ -1,0 +1,26 @@
+.summary-card {
+  padding: 28px 32px;
+  border-radius: 6px;
+  background-color: var(--theme-bg-quaternary);
+  box-shadow: var(--theme-shadow-primary);
+
+  &__title-wrap {
+    margin-bottom: 12px;
+  }
+
+  &__change {
+    &--positive {
+      color: #1bc5bd;
+    }
+
+    &--negative {
+      color: #f64e60;
+    }
+  }
+
+  &__change-svg {
+    &--negative {
+      transform: rotate(180deg);
+    }
+  }
+}

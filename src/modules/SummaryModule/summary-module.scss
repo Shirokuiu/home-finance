@@ -1,0 +1,9 @@
+.summary-module {
+  display: flex;
+  gap: 24px;
+
+  &__card {
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+}

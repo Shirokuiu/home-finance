@@ -12,10 +12,10 @@
 @mixin reset-button {
   @include reset;
 
-  background-color: transparent;
-  border: none;
   box-sizing: border-box;
+  border: none;
   outline: none;
+  background-color: transparent;
 }
 
 @mixin reset-input {
@@ -27,22 +27,22 @@
 }
 
 @mixin hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(100%); // stylelint-disable-line
+  position: absolute;
+  width: 1px;
   height: 1px;
   margin: -1px;
-  overflow: hidden;
   padding: 0;
-  position: absolute;
+  overflow: hidden;
+  border: 0;
   white-space: nowrap;
-  width: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%); // stylelint-disable-line
 }
 
 @mixin center-absolute {
+  position: absolute;
   inset: 0;
   margin: auto;
-  position: absolute;
 }
 
 @mixin out($color: '#80bdff') {
@@ -50,8 +50,8 @@
 
   &:focus {
     border-color: $color;
-    box-shadow: 0 0 0 0.2rem rgba($color, 0.5);
     outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba($color, 0.5);
   }
 }
 
@@ -93,6 +93,12 @@
   }
 }
 
+@mixin tp-13-15-500 {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15px;
+}
+
 @mixin tp-14-16-400 {
   font-size: 14px;
   font-weight: 400;
@@ -111,8 +117,14 @@
   line-height: 23px;
 }
 
-@mixin tp-color-gray-8 {
-  color: var(--gray-8);
+@mixin tp-25-26-500 {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+@mixin theme-tp-color-tertiary {
+  color: var(--theme-tp-color-tertiary);
 }
 
 @mixin tp-color-gray-9 {
