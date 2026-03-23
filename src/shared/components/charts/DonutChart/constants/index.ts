@@ -11,4 +11,5 @@ export const DefaultConfig = {
   InnerRadius: 60,
   OuterRadius: 88,
   Height: 260,
+  OuterRadiusHover: 6,
 } as const;

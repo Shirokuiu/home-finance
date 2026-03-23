@@ -13,6 +13,7 @@ function DashboardPage() {
         data={[
           { value: 1, name: 'test' },
           { value: 3, name: 'test2' },
+          { value: 4, name: 'test2' },
         ]}
       />
     </div>
