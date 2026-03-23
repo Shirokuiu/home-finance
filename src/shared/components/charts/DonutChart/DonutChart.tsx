@@ -13,7 +13,7 @@ function DonutChart({
   // TODO Удалить, когда с бэка придут цвета (colors)
   const preparedData = useMemo(
     () => mapData(data).map((item) => ({ ...item, fill: item.color })),
-    [data]
+    [data],
   );
 
   return (
