@@ -8,8 +8,8 @@ export const DEFAULT_COLORS = [
 ] as const;
 
 export const DefaultConfig = {
-  InnerRadius: 60,
-  OuterRadius: 88,
-  Height: 260,
+  InnerRadius: 110,
+  OuterRadius: 138,
+  Height: 350,
   OuterRadiusHover: 6,
 } as const;
