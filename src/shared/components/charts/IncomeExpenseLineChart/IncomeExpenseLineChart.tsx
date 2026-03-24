@@ -8,21 +8,14 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-
-import type { IncomeExpenseDataItem } from 'src/shared/components/charts/types';
-
-type IncomeExpenseLineChartProps = {
-  readonly data: IncomeExpenseDataItem[];
-  readonly height?: number;
-  readonly incomeColor?: string;
-  readonly expensesColor?: string;
-};
+import type { IncomeExpenseLineChartProps } from 'src/shared/components/charts/IncomeExpenseLineChart/types';
+import { ChartDefaultConfig } from 'src/shared/components/charts/IncomeExpenseLineChart/constants';
 
 function IncomeExpenseLineChart({
   data,
-  height = 280,
-  incomeColor = '#50cd89',
-  expensesColor = '#f1416c',
+  height = ChartDefaultConfig.Height,
+  incomeColor = ChartDefaultConfig.IncomeColor,
+  expensesColor = ChartDefaultConfig.ExpensesColor,
 }: IncomeExpenseLineChartProps) {
   return (
     <div style={{ width: '100%', height }}>
@@ -36,7 +29,7 @@ function IncomeExpenseLineChart({
           <Line
             type="monotone"
             dataKey="income"
-            name="Income"
+            name="Доходы"
             stroke={incomeColor}
             strokeWidth={2.5}
             dot={{ r: 3 }}
@@ -45,7 +38,7 @@ function IncomeExpenseLineChart({
           <Line
             type="monotone"
             dataKey="expenses"
-            name="Expenses"
+            name="Расходы"
             stroke={expensesColor}
             strokeWidth={2.5}
             dot={{ r: 3 }}
