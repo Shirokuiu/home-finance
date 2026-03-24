@@ -5,7 +5,7 @@ import type { PropsWithCssClassName } from 'src/shared/types/shared';
 import type { SummaryCardProps } from 'src/modules/SummaryModule/types';
 import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
 
-import 'src/modules/SummaryModule/components/SummaryCard/summary-card.scss';
+import './summary-card.scss';
 
 function SummaryCard({
   iconId,

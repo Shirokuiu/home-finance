@@ -44,7 +44,7 @@ function SummaryModule({ className }: PropsWithCssClassName) {
         }}
         iconId={SvgSpriteIconId.PiggyBank}
         title="Сбережения"
-        summary="+200 014,72 ₽"
+        summary="200 014,72 ₽"
         className="summary-module__card"
       />
     </section>

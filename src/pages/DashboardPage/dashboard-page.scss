@@ -2,4 +2,13 @@
   &__summary {
     margin-bottom: 25px;
   }
+
+  &__donut-chart {
+    flex-shrink: 0;
+    width: 420px;
+  }
+
+  &__top-categories {
+    flex-grow: 1;
+  }
 }
