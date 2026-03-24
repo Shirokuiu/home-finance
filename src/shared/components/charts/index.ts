@@ -1,8 +1,6 @@
-import DonutChart from 'src/shared/components/charts/DonutChart/DonutChart';
+import DonutChart from './DonutChart/DonutChart';
+import IncomeExpenseLineChart from './IncomeExpenseLineChart/IncomeExpenseLineChart';
 
-export { default as IncomeExpenseLineChart } from './IncomeExpenseLineChart';
 export { default as ExpenseBarChart } from './ExpenseBarChart';
 
-export type { IncomeExpenseDataItem, ExpenseBarDataItem } from './types';
-
-export { DonutChart };
+export { DonutChart, IncomeExpenseLineChart };
