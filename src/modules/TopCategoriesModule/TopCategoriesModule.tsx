@@ -10,7 +10,7 @@ function TopCategoriesModule({ className = '' }: PropsWithCssClassName) {
     <section className={`top-categories-module ${className}`.trim()}>
       <Flex align="center" justify="space-between" className="top-categories-module__title-wrap">
         <h2 className="tp-reset tp-18-20-600">Расходы по категориям</h2>
-        <NavLink to="#" className="top-categories-module__edit-link">
+        <NavLink to="#" className="tp-link">
           Редактировать категории
         </NavLink>
       </Flex>
