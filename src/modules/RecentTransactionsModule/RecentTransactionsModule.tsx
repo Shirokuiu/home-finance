@@ -1,4 +1,4 @@
-import { Table, type TableProps } from 'antd';
+import { Flex, Table, type TableProps } from 'antd';
 import {
   AmountType,
   type DataType,
@@ -8,6 +8,7 @@ import {
   AmountTypeColorMap,
   AmountTypeSignMap,
 } from 'src/modules/RecentTransactionsModule/constants';
+import { NavLink } from 'react-router-dom';
 
 import './recent-transaction-module.scss';
 
@@ -69,7 +70,14 @@ const mockDataSource: TableProps<DataType>['dataSource'] = [
 function RecentTransactionsModule() {
   return (
     <div className="recent-transaction-module">
-      <h2 className="tp-reset tp-18-20-600 recent-transaction-module__title">Последние операции</h2>
+      <Flex justify="space-between">
+        <h2 className="tp-reset tp-18-20-600 recent-transaction-module__title">
+          Последние операции
+        </h2>
+        <NavLink to="#" className="tp-link">
+          Все операции
+        </NavLink>
+      </Flex>
       <Table pagination={false} columns={mockColumns} dataSource={mockDataSource} />
     </div>
   );

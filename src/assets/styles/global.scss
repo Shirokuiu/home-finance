@@ -22,6 +22,10 @@ img {
   @include mixins.reset-list;
 }
 
+.tp-link {
+  @include mixins.tp-link
+}
+
 .recharts-surface {
   outline: none;
 }
