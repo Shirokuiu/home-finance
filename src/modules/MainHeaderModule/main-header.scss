@@ -1,6 +1,7 @@
 .main-header {
   padding: 15px 0;
   background-color: var(--theme-bg-secondary);
+  box-shadow: 0 0 40px 0 rgb(82 63 105 / 10%);
 
   &__nav {
     display: flex;

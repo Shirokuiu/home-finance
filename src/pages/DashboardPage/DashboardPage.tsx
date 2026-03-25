@@ -3,6 +3,7 @@ import TopCategoriesModule from 'src/modules/TopCategoriesModule/TopCategoriesMo
 import { Flex } from 'antd';
 import CategoryDonutChartModule from 'src/modules/CategoryDonutChartModule/CategoryDonutChartModule';
 import CashflowChartModule from 'src/modules/CashflowChartModule/CashflowChartModule';
+import RecentTransactionsModule from 'src/modules/RecentTransactionsModule/RecentTransactionsModule';
 
 import './dashboard-page.scss';
 
@@ -14,7 +15,8 @@ function DashboardPage() {
         <CategoryDonutChartModule className="dashboard-page__donut-chart" />
         <TopCategoriesModule className="dashboard-page__top-categories" />
       </Flex>
-      <CashflowChartModule />
+      <CashflowChartModule className="dashboard-page__cashflow-chart" />
+      <RecentTransactionsModule />
     </div>
   );
 }

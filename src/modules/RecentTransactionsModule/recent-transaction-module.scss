@@ -1,0 +1,13 @@
+.recent-transaction-module {
+  padding: 28px;
+  border-radius: 6px;
+  background-color: var(--theme-bg-quaternary);
+  box-shadow: var(--theme-shadow-primary);
+
+  &__title {
+    &.tp-reset {
+      margin-bottom: 16px;
+      padding-left: 5px;
+    }
+  }
+}
