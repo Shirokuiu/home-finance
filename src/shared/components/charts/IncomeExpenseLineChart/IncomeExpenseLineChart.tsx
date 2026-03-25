@@ -20,7 +20,12 @@ function IncomeExpenseLineChart({
   return (
     <div style={{ width: '100%', height }}>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data} margin={{ top: 8, right: 12, left: 4, bottom: 8 }}>
+        <LineChart
+          data={data}
+          margin={{ top: 8, right: 12, left: 4, bottom: 8 }}
+          style={{ outline: 'none' }}
+          tabIndex={-1}
+        >
           <CartesianGrid stroke="#edf1f7" strokeDasharray="3 3" />
           <XAxis dataKey="date" tickLine={false} axisLine={{ stroke: '#dfe6f1' }} />
           <YAxis tickLine={false} axisLine={{ stroke: '#dfe6f1' }} />
