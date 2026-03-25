@@ -9,6 +9,7 @@ import {
   AmountTypeSignMap,
 } from 'src/modules/RecentTransactionsModule/constants';
 import { NavLink } from 'react-router-dom';
+import CategoryIcon from 'src/shared/components/CategoryIcon/CategoryIcon';
 
 import './recent-transaction-module.scss';
 
@@ -17,6 +18,12 @@ const mockColumns: TableProps<DataType>['columns'] = [
     key: '1',
     title: 'Категория',
     dataIndex: 'category',
+    render: (value) => (
+      <Flex align="center">
+        <CategoryIcon />
+        {value}
+      </Flex>
+    ),
   },
   {
     key: '2',
