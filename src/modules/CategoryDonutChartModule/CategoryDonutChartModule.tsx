@@ -14,7 +14,7 @@ function CategoryDonutChartModule({ className = '' }: PropsWithCssClassName) {
   return (
     <Flex vertical className={`category-donut-chart-module ${className}`.trim()}>
       <h2 className="tp-reset tp-18-20-600 category-donut-chart-module__title">
-        Расходы по категориям
+        Распределение расходов
       </h2>
       <Flex vertical justify="center" className="category-donut-chart-module__chart-wrap">
         <DonutChart data={donutChartMockData} />

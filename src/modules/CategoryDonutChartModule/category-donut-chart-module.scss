@@ -1,16 +1,17 @@
 .category-donut-chart-module {
+  border-radius: 6px;
+  background-color: var(--theme-bg-quaternary);
+  box-shadow: var(--theme-shadow-primary);
+
   &__title {
     flex-shrink: 0;
 
     &.tp-reset {
-      margin-bottom: 16px;
+      padding-left: 28px;
     }
   }
 
   &__chart-wrap {
     flex-grow: 1;
-    border-radius: 6px;
-    background-color: var(--theme-bg-quaternary);
-    box-shadow: var(--theme-shadow-primary);
   }
 }
