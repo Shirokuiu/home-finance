@@ -1,4 +1,5 @@
 import { IncomeExpenseLineChart } from 'src/shared/components/charts';
+import type { PropsWithCssClassName } from 'src/shared/types/shared';
 
 import './cashflow-chart-module.scss';
 
@@ -30,9 +31,9 @@ const mockData = [
   },
 ];
 
-function CashflowChartModule() {
+function CashflowChartModule({ className = '' }: PropsWithCssClassName) {
   return (
-    <div className="cashflow-chart-module">
+    <div className={`cashflow-chart-module ${className}`.trim()}>
       <h2 className="tp-reset tp-18-20-600 cashflow-chart-module__title">Доходы/Расходы</h2>
       <IncomeExpenseLineChart data={mockData} />
     </div>

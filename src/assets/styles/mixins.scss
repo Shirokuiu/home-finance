@@ -151,3 +151,11 @@
   color: var(--tp-color-gray-900);
 }
 
+@mixin tp-color-green-500 {
+  color: var(--tp-color-green-500);
+}
+
+@mixin tp-color-red-500 {
+  color: var(--tp-color-red-500);
+}
+

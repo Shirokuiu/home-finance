@@ -126,6 +126,14 @@ body {
   @include mixins.tp-color-gray-900;
 }
 
+.tp-color-green-500 {
+  @include mixins.tp-color-green-500;
+}
+
+.tp-color-red-500 {
+  @include mixins.tp-color-red-500;
+}
+
 *::input-placeholder {
   @include mixins.tp-19-23-400;
   @include mixins.tp-color-gray-900;

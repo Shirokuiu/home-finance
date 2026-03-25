@@ -1,5 +1,7 @@
 .dashboard-page {
-  &__summary {
+  &__summary,
+  &__charts-wrap,
+  &__cashflow-chart{
     margin-bottom: 25px;
   }
 
@@ -10,9 +12,5 @@
 
   &__top-categories {
     flex-grow: 1;
-  }
-
-  &__charts-wrap {
-    margin-bottom: 25px;
   }
 }
