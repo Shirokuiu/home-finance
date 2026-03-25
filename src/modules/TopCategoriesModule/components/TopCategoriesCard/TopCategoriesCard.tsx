@@ -1,14 +1,12 @@
-import { FoodIcon } from 'src/assets/img';
 import { Flex } from 'antd';
+import CategoryIcon from 'src/shared/components/CategoryIcon/CategoryIcon';
 
 import './top-categories-card.scss';
 
 function TopCategoriesCard() {
   return (
     <Flex align="center" className="top-categories-card">
-      <Flex align="center" justify="center" className="top-categories-card__icon-wrap">
-        <FoodIcon width={20} height={20} />
-      </Flex>
+      <CategoryIcon />
       <div className="top-categories-card__description-wrap">
         <p className="tp-reset tp-color-gray-800 top-categories-card__description">Еда</p>
         <span className="tp-color-gray-300 top-categories-card__description-note">
