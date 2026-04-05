@@ -1,13 +1,10 @@
-import { Flex, Table, type TableProps } from 'antd';
-import { NavLink } from 'react-router-dom';
-import { PageRoutes } from 'src/shared/constants/routes';
+import './transactions-module.scss';
+import { Table, type TableProps } from 'antd';
 import { DEFAULT_TRANSACTION_COLUMNS } from 'src/shared/components/AppTable/constants';
 import {
   TransactionAmountType,
   type TransactionDataType,
 } from 'src/shared/components/AppTable/types';
-
-import './recent-transaction-module.scss';
 
 const mockDataSource: TableProps<TransactionDataType>['dataSource'] = [
   {
@@ -32,20 +29,13 @@ const mockDataSource: TableProps<TransactionDataType>['dataSource'] = [
   },
 ];
 
-function RecentTransactionsModule() {
+function TransactionsModule() {
   return (
-    <div className="recent-transaction-module">
-      <Flex justify="space-between">
-        <h2 className="tp-reset tp-18-20-600 recent-transaction-module__title">
-          Последние операции
-        </h2>
-        <NavLink to={PageRoutes.Transactions} className="tp-link">
-          Все операции
-        </NavLink>
-      </Flex>
+    <div className="transactions-module">
+      <h2 className="tp-reset tp-18-20-600 transactions-module__title">Транзакции</h2>
       <Table pagination={false} columns={DEFAULT_TRANSACTION_COLUMNS} dataSource={mockDataSource} />
     </div>
   );
 }
 
-export default RecentTransactionsModule;
+export default TransactionsModule;

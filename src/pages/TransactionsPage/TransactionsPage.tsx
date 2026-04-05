@@ -1,5 +1,11 @@
+import TransactionsModule from 'src/modules/TransactionsModule/TransactionsModule';
+
 function TransactionsPage() {
-  return <h1>TransactionsPage</h1>;
+  return (
+    <div className="transactions-page">
+      <TransactionsModule />
+    </div>
+  );
 }
 
 export default TransactionsPage;
