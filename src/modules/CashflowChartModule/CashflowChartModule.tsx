@@ -34,7 +34,7 @@ const mockData = [
 function CashflowChartModule({ className = '' }: PropsWithCssClassName) {
   return (
     <div className={`cashflow-chart-module ${className}`.trim()}>
-      <h2 className="tp-reset tp-18-20-600 cashflow-chart-module__title">Доходы/Расходы</h2>
+      <h2 className="tp-reset tp-18-20-600 cashflow-chart-module__title">Доходы / Расходы</h2>
       <IncomeExpenseLineChart data={mockData} />
     </div>
   );

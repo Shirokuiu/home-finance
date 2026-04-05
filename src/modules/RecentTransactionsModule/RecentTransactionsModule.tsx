@@ -10,6 +10,7 @@ import {
 } from 'src/modules/RecentTransactionsModule/constants';
 import { NavLink } from 'react-router-dom';
 import CategoryIcon from 'src/shared/components/CategoryIcon/CategoryIcon';
+import { PageRoutes } from 'src/shared/constants/routes';
 
 import './recent-transaction-module.scss';
 
@@ -81,7 +82,7 @@ function RecentTransactionsModule() {
         <h2 className="tp-reset tp-18-20-600 recent-transaction-module__title">
           Последние операции
         </h2>
-        <NavLink to="#" className="tp-link">
+        <NavLink to={PageRoutes.Transactions} className="tp-link">
           Все операции
         </NavLink>
       </Flex>

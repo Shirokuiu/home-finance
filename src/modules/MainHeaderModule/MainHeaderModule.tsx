@@ -15,6 +15,11 @@ function MainHeaderModule() {
               Главная
             </NavLink>
           </li>
+          <li className="tp-14-16-500">
+            <NavLink className={getNavItemClassName} to={PageRoutes.Transactions}>
+              Транзакции
+            </NavLink>
+          </li>
         </ul>
       </CenterLayout>
     </div>
