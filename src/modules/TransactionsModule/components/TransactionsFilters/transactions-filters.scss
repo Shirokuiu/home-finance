@@ -1,0 +1,10 @@
+.transactions-filters {
+  &__autocomplete-wrap {
+    width: 100%;
+    max-width: 540px;
+  }
+
+  &__options {
+    flex-grow: 1;
+  }
+}
