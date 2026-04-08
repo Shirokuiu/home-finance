@@ -1,13 +1,14 @@
 import { Flex, Table, type TableProps } from 'antd';
-import { NavLink } from 'react-router-dom';
-import { PageRoutes } from 'src/shared/constants/routes';
 import { DEFAULT_TRANSACTION_COLUMNS } from 'src/shared/components/AppTable/constants';
 import {
   TransactionAmountType,
   type TransactionDataType,
 } from 'src/shared/components/AppTable/types';
+import { PlusOutlined } from '@ant-design/icons';
+import TransactionsFilters from 'src/modules/TransactionsModule/components/TransactionsFilters/TransactionsFilters';
+import { AppButtonAdd } from 'src/shared/components/AppButton';
 
-import './recent-transaction-module.scss';
+import './transactions-module.scss';
 
 const mockDataSource: TableProps<TransactionDataType>['dataSource'] = [
   {
@@ -32,20 +33,19 @@ const mockDataSource: TableProps<TransactionDataType>['dataSource'] = [
   },
 ];
 
-function RecentTransactionsModule() {
+function TransactionsModule() {
   return (
-    <div className="recent-transaction-module">
-      <Flex justify="space-between">
-        <h2 className="tp-reset tp-18-20-600 recent-transaction-module__title">
-          Последние операции
-        </h2>
-        <NavLink to={PageRoutes.Transactions} className="tp-link">
-          Все операции
-        </NavLink>
+    <div className="transactions-module">
+      <Flex justify="space-between" className="transactions-module__row-top">
+        <h2 className="tp-reset tp-18-20-600 transactions-module__title">Транзакции</h2>
+        <AppButtonAdd icon={<PlusOutlined />} size="large" className="">
+          Добавить
+        </AppButtonAdd>
       </Flex>
+      <TransactionsFilters className="transactions-module__filters" />
       <Table pagination={false} columns={DEFAULT_TRANSACTION_COLUMNS} dataSource={mockDataSource} />
     </div>
   );
 }
 
-export default RecentTransactionsModule;
+export default TransactionsModule;
