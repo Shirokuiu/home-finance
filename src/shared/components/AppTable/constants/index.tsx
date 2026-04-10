@@ -1,5 +1,3 @@
-import { Flex } from 'antd';
-import CategoryIcon from 'src/shared/components/CategoryIcon/CategoryIcon';
 import {
   TransactionAmountType,
   type AppTableColumn,
@@ -8,6 +6,7 @@ import {
 } from 'src/shared/components/AppTable/types';
 import { AppTableEditableRow } from 'src/shared/components/AppTable/index';
 import AppTableEditableCell from 'src/shared/components/AppTable/components/AppTableEditableCell/AppTableEditableCell';
+import { renderDefaultCategoryColumn } from 'src/shared/components/AppTable/helpers';
 
 export const AmountTypeColorMap = {
   [TransactionAmountType.Income]: 'tp-color-green-500',
@@ -23,12 +22,6 @@ export const AppTableTransactionCategoryColumn: AppTableColumn<TransactionDataTy
   key: 'category',
   title: 'Категория',
   dataIndex: 'category',
-  render: (value: TransactionDataType['category']) => (
-    <Flex align="center">
-      <CategoryIcon />
-      {value}
-    </Flex>
-  ),
 } as const;
 
 export const AppTableTransactionDescriptionColumn: AppTableColumn<TransactionDataType> = {
@@ -61,7 +54,7 @@ export const AppTableTransactionDateColumn: AppTableColumn<TransactionDataType> 
 } as const;
 
 export const DEFAULT_TRANSACTION_COLUMNS: AppTableColumn<TransactionDataType>[] = [
-  AppTableTransactionCategoryColumn,
+  { ...AppTableTransactionCategoryColumn, render: renderDefaultCategoryColumn },
   AppTableTransactionDescriptionColumn,
   AppTableTransactionAmountColumn,
   AppTableTransactionDateColumn,
