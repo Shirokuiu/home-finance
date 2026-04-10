@@ -1,4 +1,4 @@
-import { Flex, type TableProps } from 'antd';
+import { Flex } from 'antd';
 import CategoryIcon from 'src/shared/components/CategoryIcon/CategoryIcon';
 import {
   TransactionAmountType,
@@ -6,6 +6,8 @@ import {
   type TransactionDataType,
   type TransactionDataTypeAmount,
 } from 'src/shared/components/AppTable/types';
+import { AppTableEditableRow } from 'src/shared/components/AppTable/index';
+import AppTableEditableCell from 'src/shared/components/AppTable/components/AppTableEditableCell/AppTableEditableCell';
 
 export const AmountTypeColorMap = {
   [TransactionAmountType.Income]: 'tp-color-green-500',
@@ -58,9 +60,16 @@ export const AppTableTransactionDateColumn: AppTableColumn<TransactionDataType> 
   ),
 } as const;
 
-export const DEFAULT_TRANSACTION_COLUMNS: TableProps<TransactionDataType>['columns'] = [
+export const DEFAULT_TRANSACTION_COLUMNS: AppTableColumn<TransactionDataType>[] = [
   AppTableTransactionCategoryColumn,
   AppTableTransactionDescriptionColumn,
   AppTableTransactionAmountColumn,
   AppTableTransactionDateColumn,
 ];
+
+export const DefaultEditableComponents = {
+  body: {
+    row: AppTableEditableRow,
+    cell: AppTableEditableCell,
+  },
+} as const;

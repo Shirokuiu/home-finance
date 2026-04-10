@@ -1,5 +1,7 @@
 import type { ObjectValues } from 'src/shared/types/shared';
 import type { TableProps } from 'antd';
+import type { ColumnType } from 'antd/es/table';
+import type { HTMLAttributes, PropsWithChildren, ReactNode, TdHTMLAttributes } from 'react';
 
 export const TransactionAmountType = {
   Income: 'income',
@@ -19,6 +21,24 @@ export type TransactionDataTypeAmount = {
   value: string;
 };
 
-export type AppTableColumn<T = Record<string, unknown>> = NonNullable<
-  TableProps<T>['columns']
->[number];
+export type AppTableProps<T> = Omit<TableProps<T>, 'columns'> & {
+  columns?: AppTableColumn<T>[];
+};
+
+export type AppTableColumn<T = Record<string, unknown>> = ColumnType<T> & AppTableEditableProps<T>;
+
+export type AppTableEditableProps<T> = {
+  editable?: boolean;
+  handleSave?: (record: T) => void;
+};
+
+export type AppTableCellProps<T> = HTMLAttributes<HTMLElement> &
+  TdHTMLAttributes<HTMLElement> & {
+    cellTitle: ReactNode;
+    dataIndex: string;
+    record: T;
+    editable?: boolean;
+    handleSave: (record: T) => void;
+  };
+
+export type AppEditableCellProps<T> = PropsWithChildren<Readonly<AppTableCellProps<T>>>;
