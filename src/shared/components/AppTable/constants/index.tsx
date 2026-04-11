@@ -2,11 +2,13 @@ import {
   TransactionAmountType,
   type AppTableColumn,
   type TransactionDataType,
-  type TransactionDataTypeAmount,
 } from 'src/shared/components/AppTable/types';
 import { AppTableEditableRow } from 'src/shared/components/AppTable/index';
 import AppTableEditableCell from 'src/shared/components/AppTable/components/AppTableEditableCell/AppTableEditableCell';
-import { renderDefaultCategoryColumn } from 'src/shared/components/AppTable/helpers';
+import {
+  renderDefaultAmountColumn,
+  renderDefaultCategoryColumn,
+} from 'src/shared/components/AppTable/helpers';
 
 export const AmountTypeColorMap = {
   [TransactionAmountType.Income]: 'tp-color-green-500',
@@ -34,14 +36,6 @@ export const AppTableTransactionAmountColumn: AppTableColumn<TransactionDataType
   key: 'amount',
   title: 'Сумма',
   dataIndex: 'amount',
-  render: ({ value, type }: TransactionDataTypeAmount) => {
-    return (
-      <span className={`tp-14-16-500 ${AmountTypeColorMap[type]}`}>
-        {AmountTypeSignMap[type]}
-        {value} ₽
-      </span>
-    );
-  },
 } as const;
 
 export const AppTableTransactionDateColumn: AppTableColumn<TransactionDataType> = {
@@ -56,7 +50,7 @@ export const AppTableTransactionDateColumn: AppTableColumn<TransactionDataType> 
 export const DEFAULT_TRANSACTION_COLUMNS: AppTableColumn<TransactionDataType>[] = [
   { ...AppTableTransactionCategoryColumn, render: renderDefaultCategoryColumn },
   AppTableTransactionDescriptionColumn,
-  AppTableTransactionAmountColumn,
+  { ...AppTableTransactionAmountColumn, render: renderDefaultAmountColumn },
   AppTableTransactionDateColumn,
 ];
 

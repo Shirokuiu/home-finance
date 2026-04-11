@@ -6,12 +6,13 @@ import type { AppEditableCellProps } from 'src/shared/components/AppTable/types'
 import './app-table-editable-cell.scss';
 
 function AppTableEditableCell<T>({
-  cellTitle,
   editable,
   children,
   dataIndex,
   record,
   handleSave,
+  getEditValue,
+  applyEditValue,
   ...restProps
 }: AppEditableCellProps<T>) {
   const [editing, setEditing] = useState(false);
@@ -26,15 +27,22 @@ function AppTableEditableCell<T>({
 
   const toggleEdit = () => {
     setEditing(!editing);
-    form.setFieldsValue({ [dataIndex]: record[dataIndex as keyof T] });
+
+    const editValue = getEditValue?.(record) ?? String(record[dataIndex as keyof T] ?? '');
+
+    form.setFieldsValue({ [dataIndex]: editValue });
   };
 
   const save = async () => {
     try {
       const values = await form.validateFields();
+      const rawValue = values[dataIndex];
+      const nextRecord = applyEditValue
+        ? applyEditValue(record, String(rawValue ?? ''))
+        : ({ ...record, [dataIndex]: rawValue } as T);
 
       toggleEdit();
-      handleSave?.({ ...record, ...values });
+      handleSave?.(nextRecord);
     } catch (errInfo) {
       console.log('Save failed:', errInfo);
     }
@@ -44,12 +52,13 @@ function AppTableEditableCell<T>({
 
   if (editable) {
     childNode = editing ? (
-      <Form.Item
-        style={{ margin: 0 }}
-        name={dataIndex}
-        rules={[{ required: true, message: `${cellTitle} is required.` }]}
-      >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+      <Form.Item style={{ margin: 0 }} name={dataIndex}>
+        <Input
+          ref={inputRef}
+          className="app-table-editable-cell__input"
+          onPressEnter={save}
+          onBlur={save}
+        />
       </Form.Item>
     ) : (
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions

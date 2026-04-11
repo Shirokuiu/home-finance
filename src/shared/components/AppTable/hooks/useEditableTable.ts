@@ -51,6 +51,8 @@ export const useEditableTable = <T extends { key: Key }>({
               dataIndex: String(col.dataIndex),
               cellTitle,
               handleSave,
+              getEditValue: col.getEditValue,
+              applyEditValue: col.applyEditValue,
             };
           },
         };

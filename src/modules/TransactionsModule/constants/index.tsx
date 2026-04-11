@@ -6,7 +6,10 @@ import {
 } from 'src/shared/components/AppTable/constants';
 import type { AppTableColumn, TransactionDataType } from 'src/shared/components/AppTable/types';
 import AppSelect from 'src/shared/components/AppSelect/AppSelect';
-import { AppTableCategoryCellDefault } from 'src/shared/components/AppTable';
+import {
+  AppTableCategoryCellDefault,
+  renderDefaultAmountColumn,
+} from 'src/shared/components/AppTable';
 import { type SelectProps } from 'antd';
 import { AppButton } from 'src/shared/components/AppButton';
 import SvgSpriteIcon from 'src/shared/components/SvgSpriteIcon/SvgSpriteIcon';
@@ -99,7 +102,20 @@ export const TRANSACTIONS_COLUMNS: AppTableColumn<TransactionDataType>[] = [
     ),
   },
   { ...AppTableTransactionDescriptionColumn, editable: true },
-  { ...AppTableTransactionAmountColumn, width: '200px', editable: true },
+  {
+    ...AppTableTransactionAmountColumn,
+    width: '200px',
+    editable: true,
+    getEditValue: (record) => record.amount.value,
+    applyEditValue: (record, value) => ({
+      ...record,
+      amount: {
+        ...record.amount,
+        value,
+      },
+    }),
+    render: renderDefaultAmountColumn,
+  },
   { ...AppTableTransactionDateColumn, width: '150px', editable: true },
   {
     key: 'options',
