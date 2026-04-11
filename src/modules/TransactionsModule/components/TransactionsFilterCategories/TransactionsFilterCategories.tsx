@@ -16,7 +16,8 @@ function TransactionsFilterCategories() {
       size="large"
       options={options}
       defaultValue="CATEGORIES_ALL"
-      maxTagCount={2}
+      maxTagCount="responsive"
+      popupMatchSelectWidth={400}
       showSearch={{
         optionFilterProp: 'label',
       }}

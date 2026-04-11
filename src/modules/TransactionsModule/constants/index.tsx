@@ -29,6 +29,10 @@ export const CATEGORY_OPTIONS: SelectProps['options'] = [
     label: 'Квартплата',
     value: 'CATEGORIES_UTILITIES',
   },
+  {
+    label: 'Очень длинная категория Очень длинная категория Очень длинная категория',
+    value: 'TEST',
+  },
 ] as const;
 
 export const CATEGORY_TABLE_OPTIONS: SelectProps['options'] = [

@@ -14,6 +14,7 @@ function AppSelect(props: SelectProps) {
             hoverBorderColor: '#b1b8d1',
             activeBorderColor: '#7e8299',
             colorText: '#7e8299',
+            colorPrimary: '#7e8299',
           },
         },
       }}

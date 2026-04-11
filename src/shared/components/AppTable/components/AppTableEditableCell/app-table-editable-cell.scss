@@ -4,6 +4,7 @@
     border: 1px solid transparent;
     border-radius: 2px;
     cursor: pointer;
+    transform: translateX(-5px);
 
     &:hover {
       border-color: #d9d9d9;
