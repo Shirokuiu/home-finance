@@ -1,0 +1,12 @@
+.app-table-editable-cell {
+  &__value-wrap {
+    padding: 5px 11px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #d9d9d9;
+    }
+  }
+}

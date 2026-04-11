@@ -2,7 +2,8 @@ import type { PropsWithCssClassName } from 'src/shared/types/shared';
 import AppAutocomplete from 'src/shared/components/AppAutocomplete/AppAutocomplete';
 import { Flex } from 'antd';
 import AppSelect from 'src/shared/components/AppSelect/AppSelect';
-import { CATEGORY_OPTIONS, PERIOD_OPTIONS } from 'src/modules/TransactionsModule/constants';
+import { PERIOD_OPTIONS } from 'src/modules/TransactionsModule/constants';
+import TransactionsFilterCategories from 'src/modules/TransactionsModule/components/TransactionsFilterCategories/TransactionsFilterCategories';
 
 import './transactions-filters.scss';
 
@@ -14,12 +15,7 @@ function TransactionsFilters({ className = '' }: PropsWithCssClassName) {
           <AppAutocomplete />
         </div>
         <Flex gap="10px" className="transactions-filters__options">
-          <AppSelect
-            className="transactions-filters__option-select"
-            size="large"
-            options={CATEGORY_OPTIONS}
-            defaultValue="CATEGORIES_ALL"
-          />
+          <TransactionsFilterCategories />
           <AppSelect
             className="transactions-filters__option-select"
             size="large"

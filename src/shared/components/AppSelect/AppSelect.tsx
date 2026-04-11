@@ -2,7 +2,7 @@ import { ConfigProvider, Select, type SelectProps } from 'antd';
 
 import './app-select.scss';
 
-function AppSelect({ size, className = '', options, defaultValue }: SelectProps) {
+function AppSelect(props: SelectProps) {
   return (
     <ConfigProvider
       theme={{
@@ -18,12 +18,7 @@ function AppSelect({ size, className = '', options, defaultValue }: SelectProps)
         },
       }}
     >
-      <Select
-        defaultValue={defaultValue}
-        size={size}
-        options={options}
-        className={`app-select ${className}`.trim()}
-      />
+      <Select {...props} className={`app-select ${props.className}`.trim()} />
     </ConfigProvider>
   );
 }

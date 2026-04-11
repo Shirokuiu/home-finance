@@ -7,7 +7,10 @@ import {
 import type { AppTableColumn, TransactionDataType } from 'src/shared/components/AppTable/types';
 import AppSelect from 'src/shared/components/AppSelect/AppSelect';
 import { AppTableCategoryCellDefault } from 'src/shared/components/AppTable';
-import type { SelectProps } from 'antd';
+import { type SelectProps } from 'antd';
+import { AppButton } from 'src/shared/components/AppButton';
+import SvgSpriteIcon from 'src/shared/components/SvgSpriteIcon/SvgSpriteIcon';
+import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
 
 export const CATEGORY_OPTIONS: SelectProps['options'] = [
   {
@@ -17,6 +20,14 @@ export const CATEGORY_OPTIONS: SelectProps['options'] = [
   {
     label: 'Еда',
     value: 'CATEGORIES_FOOD',
+  },
+  {
+    label: 'Развлечения',
+    value: 'CATEGORIES_FUN',
+  },
+  {
+    label: 'Квартплата',
+    value: 'CATEGORIES_UTILITIES',
   },
 ] as const;
 
@@ -28,6 +39,10 @@ export const CATEGORY_TABLE_OPTIONS: SelectProps['options'] = [
   {
     label: 'Развлечения',
     value: 'CATEGORIES_FUN',
+  },
+  {
+    label: 'Очень длинная категория Очень длинная категория Очень длинная категория',
+    value: 'TEST',
   },
 ] as const;
 
@@ -65,15 +80,27 @@ export const PERIOD_OPTIONS: SelectProps['options'] = [
 export const TRANSACTIONS_COLUMNS: AppTableColumn<TransactionDataType>[] = [
   {
     ...AppTableTransactionCategoryColumn,
+    width: '350px',
     render: () => (
       <>
         <AppTableCategoryCellDefault>
-          <AppSelect options={CATEGORY_TABLE_OPTIONS} defaultValue="CATEGORIES_FOOD" />
+          <AppSelect
+            options={CATEGORY_TABLE_OPTIONS}
+            defaultValue="CATEGORIES_FOOD"
+            popupMatchSelectWidth={400}
+            className="transactions-module__categpry-select"
+          />
         </AppTableCategoryCellDefault>
       </>
     ),
   },
   { ...AppTableTransactionDescriptionColumn, editable: true },
-  { ...AppTableTransactionAmountColumn, editable: true },
-  { ...AppTableTransactionDateColumn, editable: true },
-];
+  { ...AppTableTransactionAmountColumn, width: '200px', editable: true },
+  { ...AppTableTransactionDateColumn, width: '150px', editable: true },
+  {
+    key: 'options',
+    dataIndex: 'options',
+    width: '50px',
+    render: () => <AppButton danger icon={<SvgSpriteIcon id={SvgSpriteIconId.Trash} />} />,
+  },
+] as const;
