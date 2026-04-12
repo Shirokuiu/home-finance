@@ -14,7 +14,11 @@ import { type SelectProps } from 'antd';
 import { AppButton } from 'src/shared/components/AppButton';
 import SvgSpriteIcon from 'src/shared/components/SvgSpriteIcon/SvgSpriteIcon';
 import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
-import { applyEditValue, getEditValue } from 'src/modules/TransactionsModule/helpers';
+import {
+  applyDateEditValue,
+  applyAmountEditValue,
+  getAmountEditValue,
+} from 'src/modules/TransactionsModule/helpers';
 import AppTableDateCellDefault from 'src/shared/components/AppTable/components/AppTableDateCellDefault/AppTableDateCellDefault';
 
 export const SIGN_CAPTURE_GROUP_INDEX = 1;
@@ -25,6 +29,24 @@ export const AmountRegex = {
   LeadingZeroes: /^0+(?=\d)/,
   Thousands: /\B(?=(\d{3})+(?!\d))/g,
 };
+
+export const DateInputFormatConfig = {
+  Format: 'dd.MM.yyyy',
+  Regex: {
+    SeparatorNormalize: /,/g,
+    SeparatorSpacesNormalize: /\s*\.\s*/g,
+    FullDate: /^(\d{2})\.(\d{2})\.(\d{4})$/,
+    DayMonth: /^(\d{2})\.(\d{2})$/,
+    DayOnly: /^(\d{2})$/,
+    DayYearWithoutMonth: /^(\d{2})\.\.(\d{4})$/,
+  },
+  GroupIndex: {
+    Day: 1,
+    Month: 2,
+    Year: 3,
+    YearWithoutMonth: 2,
+  },
+} as const;
 
 export const CATEGORY_OPTIONS: SelectProps['options'] = [
   {
@@ -117,14 +139,15 @@ export const TRANSACTIONS_COLUMNS: AppTableColumn<TransactionDataType>[] = [
     ...AppTableTransactionAmountColumn,
     width: '200px',
     editable: true,
-    getEditValue,
-    applyEditValue,
+    getEditValue: getAmountEditValue,
+    applyEditValue: applyAmountEditValue,
     render: renderDefaultAmountColumn,
   },
   {
     ...AppTableTransactionDateColumn,
     width: '150px',
     editable: true,
+    applyEditValue: applyDateEditValue,
     render: (value: TransactionDataType['date']) => <AppTableDateCellDefault value={value} />,
   },
   {

@@ -4,7 +4,7 @@ import type {
 } from 'src/shared/components/AppTable/types';
 import { normalizeAmountInput } from 'src/modules/TransactionsModule/helpers/normalizeAmountInput';
 
-export const applyEditValue: AppTableEditableProps<TransactionDataType>['applyEditValue'] = (
+export const applyAmountEditValue: AppTableEditableProps<TransactionDataType>['applyEditValue'] = (
   record,
   value,
 ) => ({
