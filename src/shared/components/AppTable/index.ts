@@ -3,7 +3,11 @@ import AppTableEditableRow from './components/AppTableEditableRow/AppTableEditab
 import AppTableEditableCell from './components/AppTableEditableCell/AppTableEditableCell';
 import AppTableCategoryCellDefault from './components/AppTableCategoryCellDefault/AppTableCategoryCellDefault';
 import AppTableAmountCellDefault from './components/AppTableAmountCellDefault/AppTableAmountCellDefault';
-import { renderDefaultAmountColumn, renderDefaultCategoryColumn } from './helpers';
+import {
+  renderDefaultAmountColumn,
+  renderDefaultCategoryColumn,
+  renderDefaultDateColumn,
+} from './helpers';
 
 export {
   AppTableEditableRow,
@@ -13,4 +17,5 @@ export {
   AppTableAmountCellDefault,
   renderDefaultCategoryColumn,
   renderDefaultAmountColumn,
+  renderDefaultDateColumn,
 };

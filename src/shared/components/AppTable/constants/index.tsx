@@ -3,7 +3,7 @@ import {
   type AppTableColumn,
   type TransactionDataType,
 } from 'src/shared/components/AppTable/types';
-import { AppTableEditableRow } from 'src/shared/components/AppTable/index';
+import { AppTableEditableRow, renderDefaultDateColumn } from 'src/shared/components/AppTable/index';
 import AppTableEditableCell from 'src/shared/components/AppTable/components/AppTableEditableCell/AppTableEditableCell';
 import {
   renderDefaultAmountColumn,
@@ -42,16 +42,13 @@ export const AppTableTransactionDateColumn: AppTableColumn<TransactionDataType> 
   key: 'date',
   title: 'Дата',
   dataIndex: 'date',
-  render: (value: TransactionDataType['date']) => (
-    <span className="tp-color-gray-300">{value}</span>
-  ),
 } as const;
 
 export const DEFAULT_TRANSACTION_COLUMNS: AppTableColumn<TransactionDataType>[] = [
   { ...AppTableTransactionCategoryColumn, render: renderDefaultCategoryColumn },
   AppTableTransactionDescriptionColumn,
   { ...AppTableTransactionAmountColumn, render: renderDefaultAmountColumn },
-  AppTableTransactionDateColumn,
+  { ...AppTableTransactionDateColumn, render: renderDefaultDateColumn },
 ];
 
 export const DefaultEditableComponents = {

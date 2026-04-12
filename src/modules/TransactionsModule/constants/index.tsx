@@ -15,6 +15,7 @@ import { AppButton } from 'src/shared/components/AppButton';
 import SvgSpriteIcon from 'src/shared/components/SvgSpriteIcon/SvgSpriteIcon';
 import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
 import { applyEditValue, getEditValue } from 'src/modules/TransactionsModule/helpers';
+import AppTableDateCellDefault from 'src/shared/components/AppTable/components/AppTableDateCellDefault/AppTableDateCellDefault';
 
 export const SIGN_CAPTURE_GROUP_INDEX = 1;
 
@@ -120,7 +121,12 @@ export const TRANSACTIONS_COLUMNS: AppTableColumn<TransactionDataType>[] = [
     applyEditValue,
     render: renderDefaultAmountColumn,
   },
-  { ...AppTableTransactionDateColumn, width: '150px', editable: true },
+  {
+    ...AppTableTransactionDateColumn,
+    width: '150px',
+    editable: true,
+    render: (value: TransactionDataType['date']) => <AppTableDateCellDefault value={value} />,
+  },
   {
     key: 'options',
     dataIndex: 'options',
