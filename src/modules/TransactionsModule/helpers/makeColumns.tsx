@@ -45,11 +45,14 @@ export const makeColumns = ({
       </>
     ),
   },
-  { ...AppTableTransactionDescriptionColumn, editable: true },
+  {
+    ...AppTableTransactionDescriptionColumn,
+    editable: ({ key }) => !removedKeys.includes(key),
+  },
   {
     ...AppTableTransactionAmountColumn,
     width: '200px',
-    editable: true,
+    editable: ({ key }) => !removedKeys.includes(key),
     getEditValue: getAmountEditValue,
     applyEditValue: applyAmountEditValue,
     render: renderDefaultAmountColumn,
@@ -57,7 +60,7 @@ export const makeColumns = ({
   {
     ...AppTableTransactionDateColumn,
     width: '150px',
-    editable: true,
+    editable: ({ key }) => !removedKeys.includes(key),
     applyEditValue: applyDateEditValue,
     render: (value: TransactionDataType['date']) => <AppTableDateCellDefault value={value} />,
   },

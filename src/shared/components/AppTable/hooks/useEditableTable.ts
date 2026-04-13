@@ -44,10 +44,12 @@ export const useEditableTable = <T extends { key: Key }>({
           ...col,
           onCell: (record: T): AppTableCellProps<T> => {
             const cellTitle = typeof col.title === 'function' ? '' : (col.title ?? '');
+            const isEditable =
+              typeof col.editable === 'function' ? col.editable(record) : col.editable;
 
             return {
               record,
-              editable: col.editable,
+              editable: isEditable,
               dataIndex: String(col.dataIndex),
               cellTitle,
               handleSave,
