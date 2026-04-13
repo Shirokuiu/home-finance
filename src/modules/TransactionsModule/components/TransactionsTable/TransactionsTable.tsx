@@ -4,7 +4,8 @@ import {
   type TransactionDataType,
 } from 'src/shared/components/AppTable/types';
 import { AppTable } from 'src/shared/components/AppTable';
-import { TRANSACTIONS_COLUMNS } from 'src/modules/TransactionsModule/constants';
+import { useMemo, useState } from 'react';
+import { makeColumns } from 'src/modules/TransactionsModule/helpers';
 
 const mockDataSource: TableProps<TransactionDataType>['dataSource'] = [
   {
@@ -30,7 +31,23 @@ const mockDataSource: TableProps<TransactionDataType>['dataSource'] = [
 ];
 
 function TransactionsTable() {
-  return <AppTable columns={TRANSACTIONS_COLUMNS} dataSource={mockDataSource} />;
+  const [removedRowKeys, setRemovedRowKeys] = useState<TransactionDataType['key'][]>([]);
+
+  const columns = useMemo(
+    () =>
+      makeColumns({
+        removedKeys: removedRowKeys,
+        onRowRemove: (key) => {
+          setRemovedRowKeys((prevKeys) => [...prevKeys, key]);
+        },
+        onRowRestore: (key) => {
+          setRemovedRowKeys((prevKeys) => prevKeys.filter((prevKey) => prevKey !== key));
+        },
+      }),
+    [removedRowKeys],
+  );
+
+  return <AppTable columns={columns} dataSource={mockDataSource} />;
 }
 
 export default TransactionsTable;

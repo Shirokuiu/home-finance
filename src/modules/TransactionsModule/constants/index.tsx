@@ -1,25 +1,4 @@
-import {
-  AppTableTransactionAmountColumn,
-  AppTableTransactionCategoryColumn,
-  AppTableTransactionDateColumn,
-  AppTableTransactionDescriptionColumn,
-} from 'src/shared/components/AppTable/constants';
-import type { AppTableColumn, TransactionDataType } from 'src/shared/components/AppTable/types';
-import AppSelect from 'src/shared/components/AppSelect/AppSelect';
-import {
-  AppTableCategoryCellDefault,
-  renderDefaultAmountColumn,
-} from 'src/shared/components/AppTable';
 import { type SelectProps } from 'antd';
-import { AppButton } from 'src/shared/components/AppButton';
-import SvgSpriteIcon from 'src/shared/components/SvgSpriteIcon/SvgSpriteIcon';
-import { SvgSpriteIconId } from 'src/shared/components/SvgSpriteIcon/constants';
-import {
-  applyDateEditValue,
-  applyAmountEditValue,
-  getAmountEditValue,
-} from 'src/modules/TransactionsModule/helpers';
-import AppTableDateCellDefault from 'src/shared/components/AppTable/components/AppTableDateCellDefault/AppTableDateCellDefault';
 
 export const SIGN_CAPTURE_GROUP_INDEX = 1;
 
@@ -114,46 +93,5 @@ export const PERIOD_OPTIONS: SelectProps['options'] = [
   {
     label: 'За все время',
     value: 'PERIOD_ALL',
-  },
-] as const;
-
-export const TRANSACTIONS_COLUMNS: AppTableColumn<TransactionDataType>[] = [
-  {
-    ...AppTableTransactionCategoryColumn,
-    width: '350px',
-    render: () => (
-      <>
-        <AppTableCategoryCellDefault>
-          <AppSelect
-            options={CATEGORY_TABLE_OPTIONS}
-            defaultValue="CATEGORIES_FOOD"
-            popupMatchSelectWidth={400}
-            className="transactions-module__categpry-select"
-          />
-        </AppTableCategoryCellDefault>
-      </>
-    ),
-  },
-  { ...AppTableTransactionDescriptionColumn, editable: true },
-  {
-    ...AppTableTransactionAmountColumn,
-    width: '200px',
-    editable: true,
-    getEditValue: getAmountEditValue,
-    applyEditValue: applyAmountEditValue,
-    render: renderDefaultAmountColumn,
-  },
-  {
-    ...AppTableTransactionDateColumn,
-    width: '150px',
-    editable: true,
-    applyEditValue: applyDateEditValue,
-    render: (value: TransactionDataType['date']) => <AppTableDateCellDefault value={value} />,
-  },
-  {
-    key: 'options',
-    dataIndex: 'options',
-    width: '50px',
-    render: () => <AppButton danger icon={<SvgSpriteIcon id={SvgSpriteIconId.Trash} />} />,
   },
 ] as const;

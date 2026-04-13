@@ -6,3 +6,4 @@ export * from './applyDateEditValue';
 export * from './isAmountSign';
 export * from './isStrictDateValue';
 export * from './completeDateWithPreviousParts';
+export * from './makeColumns';

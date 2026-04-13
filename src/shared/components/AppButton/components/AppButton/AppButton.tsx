@@ -1,6 +1,6 @@
 import { Button, type ButtonProps, ConfigProvider } from 'antd';
 
-function AppButton({ icon, type, size, style, danger, children }: ButtonProps) {
+function AppButton({ icon, type, size, style, danger, onClick, children }: ButtonProps) {
   return (
     <ConfigProvider
       theme={{
@@ -19,7 +19,7 @@ function AppButton({ icon, type, size, style, danger, children }: ButtonProps) {
         },
       }}
     >
-      <Button style={style} icon={icon} size={size} danger={danger} type={type}>
+      <Button style={style} icon={icon} size={size} danger={danger} type={type} onClick={onClick}>
         {children}
       </Button>
     </ConfigProvider>
