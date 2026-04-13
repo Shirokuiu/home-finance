@@ -12,5 +12,27 @@
   &__option-select {
     flex: 1 1 0;
     min-width: 0;
+
+    .ant-select-content {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__option-omitted {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  &__option-omitted-text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__option-omitted-count {
+    flex-shrink: 0;
   }
 }

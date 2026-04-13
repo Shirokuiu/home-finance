@@ -1,6 +1,7 @@
 import { CATEGORY_OPTIONS } from 'src/modules/TransactionsModule/constants';
 import AppSelect from 'src/shared/components/AppSelect/AppSelect';
 import { useCategoriesSelect } from 'src/modules/TransactionsModule/hooks';
+import TransactionsFilterCategoriesMaxTagPlaceholder from 'src/modules/TransactionsModule/components/TransactionsFilterCategoriesMaxTagPlaceholder/TransactionsFilterCategoriesMaxTagPlaceholder';
 
 function TransactionsFilterCategories() {
   const { selectedCategories, options, handleCategoriesChange } = useCategoriesSelect({
@@ -17,10 +18,10 @@ function TransactionsFilterCategories() {
       options={options}
       defaultValue="CATEGORIES_ALL"
       maxTagCount="responsive"
+      maxTagPlaceholder={(omittedValues) => (
+        <TransactionsFilterCategoriesMaxTagPlaceholder omittedValues={omittedValues} />
+      )}
       popupMatchSelectWidth={400}
-      showSearch={{
-        optionFilterProp: 'label',
-      }}
       onChange={handleCategoriesChange}
     />
   );
