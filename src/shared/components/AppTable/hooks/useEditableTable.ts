@@ -46,10 +46,13 @@ export const useEditableTable = <T extends { key: Key }>({
             const cellTitle = typeof col.title === 'function' ? '' : (col.title ?? '');
             const isEditable =
               typeof col.editable === 'function' ? col.editable(record) : col.editable;
+            const isActive =
+              typeof col.isActive === 'function' ? col.isActive(record) : col.isActive;
 
             return {
               record,
               editable: isEditable,
+              isActive,
               dataIndex: String(col.dataIndex),
               cellTitle,
               handleSave,

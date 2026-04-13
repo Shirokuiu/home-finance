@@ -31,9 +31,10 @@ export const makeColumns = ({
   {
     ...AppTableTransactionCategoryColumn,
     width: '350px',
+    isActive: ({ key }) => !removedKeys.includes(key),
     render: (_, { key }) => (
       <>
-        <AppTableCategoryCellDefault>
+        <AppTableCategoryCellDefault isActive={!removedKeys.includes(key)}>
           <AppSelect
             options={CATEGORY_TABLE_OPTIONS}
             defaultValue="CATEGORIES_FOOD"
@@ -48,11 +49,13 @@ export const makeColumns = ({
   {
     ...AppTableTransactionDescriptionColumn,
     editable: ({ key }) => !removedKeys.includes(key),
+    isActive: ({ key }) => !removedKeys.includes(key),
   },
   {
     ...AppTableTransactionAmountColumn,
     width: '200px',
     editable: ({ key }) => !removedKeys.includes(key),
+    isActive: ({ key }) => !removedKeys.includes(key),
     getEditValue: getAmountEditValue,
     applyEditValue: applyAmountEditValue,
     render: renderDefaultAmountColumn,
@@ -61,6 +64,7 @@ export const makeColumns = ({
     ...AppTableTransactionDateColumn,
     width: '150px',
     editable: ({ key }) => !removedKeys.includes(key),
+    isActive: ({ key }) => !removedKeys.includes(key),
     applyEditValue: applyDateEditValue,
     render: (value: TransactionDataType['date']) => <AppTableDateCellDefault value={value} />,
   },

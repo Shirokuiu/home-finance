@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Input, type InputRef, Form } from 'antd';
 import { EditableContext } from 'src/shared/components/AppTable/context';
 import type { AppEditableCellProps } from 'src/shared/components/AppTable/types';
@@ -7,6 +7,7 @@ import './app-table-editable-cell.scss';
 
 function AppTableEditableCell<T>({
   editable,
+  isActive = true,
   children,
   dataIndex,
   record,
@@ -49,6 +50,13 @@ function AppTableEditableCell<T>({
   };
 
   let childNode = children;
+  const valueWrapClassName = useMemo(
+    () =>
+      `app-table-editable-cell__value-wrap${
+        isActive ? '' : ' app-table-editable-cell__value-wrap--no-active'
+      }`,
+    [isActive],
+  );
 
   if (editable) {
     childNode = editing ? (
@@ -62,14 +70,12 @@ function AppTableEditableCell<T>({
       </Form.Item>
     ) : (
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-      <div
-        className="app-table-editable-cell__value-wrap"
-        style={{ paddingInlineEnd: 24 }}
-        onClick={toggleEdit}
-      >
+      <div className={valueWrapClassName} style={{ paddingInlineEnd: 24 }} onClick={toggleEdit}>
         {children}
       </div>
     );
+  } else if (!isActive) {
+    childNode = <div className={valueWrapClassName}>{children}</div>;
   }
 
   return <td {...restProps}>{childNode}</td>;
