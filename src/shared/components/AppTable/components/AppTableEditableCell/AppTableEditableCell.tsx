@@ -1,6 +1,7 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { Input, type InputRef, Form } from 'antd';
+import { useContext, useMemo } from 'react';
+import { Input, Form } from 'antd';
 import { EditableContext } from 'src/shared/components/AppTable/context';
+import { useEditableCellNavigation } from 'src/shared/components/AppTable/hooks';
 import type { AppEditableCellProps } from 'src/shared/components/AppTable/types';
 
 import './app-table-editable-cell.scss';
@@ -9,30 +10,26 @@ function AppTableEditableCell<T>({
   editable,
   isActive = true,
   children,
+  columnIndex,
   dataIndex,
   record,
+  rowIndex,
   handleSave,
   getEditValue,
   applyEditValue,
   ...restProps
 }: AppEditableCellProps<T>) {
-  const [editing, setEditing] = useState(false);
-  const inputRef = useRef<InputRef>(null);
   const form = useContext(EditableContext)!;
-
-  useEffect(() => {
-    if (editing) {
-      inputRef.current?.focus();
-    }
-  }, [editing]);
-
-  const toggleEdit = () => {
-    setEditing(!editing);
-
-    const editValue = getEditValue?.(record) ?? String(record[dataIndex as keyof T] ?? '');
-
-    form.setFieldsValue({ [dataIndex]: editValue });
-  };
+  const { editing, inputRef, cellRef, toggleEdit, handleNavigationKeyDown, restoreCellFocus } =
+    useEditableCellNavigation({
+      editable,
+      dataIndex,
+      record,
+      rowIndex,
+      columnIndex,
+      form,
+      getEditValue,
+    });
 
   const save = async () => {
     try {
@@ -44,6 +41,7 @@ function AppTableEditableCell<T>({
 
       toggleEdit();
       handleSave?.(nextRecord);
+      restoreCellFocus();
     } catch (errInfo) {
       console.log('Save failed:', errInfo);
     }
@@ -69,8 +67,19 @@ function AppTableEditableCell<T>({
         />
       </Form.Item>
     ) : (
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-      <div className={valueWrapClassName} style={{ paddingInlineEnd: 24 }} onClick={toggleEdit}>
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      <div
+        ref={cellRef}
+        className={valueWrapClassName}
+        style={{ paddingInlineEnd: 24 }}
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+        tabIndex={0}
+        data-app-table-cell="true"
+        data-row-index={rowIndex}
+        data-column-index={columnIndex}
+        onClick={toggleEdit}
+        onKeyDown={handleNavigationKeyDown}
+      >
         {children}
       </div>
     );

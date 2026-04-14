@@ -35,33 +35,30 @@ export const useEditableTable = <T extends { key: Key }>({
 
   const editableColumns: AppTableColumn<T>[] = useMemo(
     () =>
-      columns?.map((col) => {
-        if (!col.editable || !col.dataIndex || typeof col.dataIndex !== 'string') {
-          return col;
-        }
+      columns?.map((col, columnIndex) => ({
+        ...col,
+        onCell: (record: T, rowIndex): AppTableCellProps<T> => {
+          const baseCellProps = col.onCell?.(record, rowIndex) ?? {};
+          const cellTitle = typeof col.title === 'function' ? '' : (col.title ?? '');
+          const isEditable =
+            typeof col.editable === 'function' ? col.editable(record) : col.editable;
+          const isActive = typeof col.isActive === 'function' ? col.isActive(record) : col.isActive;
 
-        return {
-          ...col,
-          onCell: (record: T): AppTableCellProps<T> => {
-            const cellTitle = typeof col.title === 'function' ? '' : (col.title ?? '');
-            const isEditable =
-              typeof col.editable === 'function' ? col.editable(record) : col.editable;
-            const isActive =
-              typeof col.isActive === 'function' ? col.isActive(record) : col.isActive;
-
-            return {
-              record,
-              editable: isEditable,
-              isActive,
-              dataIndex: String(col.dataIndex),
-              cellTitle,
-              handleSave,
-              getEditValue: col.getEditValue,
-              applyEditValue: col.applyEditValue,
-            };
-          },
-        };
-      }) ?? [],
+          return {
+            ...baseCellProps,
+            record,
+            editable: isEditable,
+            isActive,
+            dataIndex: typeof col.dataIndex === 'string' ? col.dataIndex : String(col.key ?? ''),
+            cellTitle,
+            handleSave,
+            getEditValue: col.getEditValue,
+            applyEditValue: col.applyEditValue,
+            rowIndex,
+            columnIndex,
+          };
+        },
+      })) ?? [],
     [columns, handleSave],
   );
 

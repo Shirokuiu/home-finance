@@ -38,10 +38,12 @@ export type AppTableEditableProps<T> = {
 export type AppTableCellProps<T> = HTMLAttributes<HTMLElement> &
   TdHTMLAttributes<HTMLElement> & {
     cellTitle: ReactNode;
+    columnIndex?: number;
     dataIndex: string;
     record: T;
     editable?: boolean;
     isActive?: boolean;
+    rowIndex?: number;
     handleSave: (record: T) => void;
     getEditValue?: (record: T) => string;
     applyEditValue?: (record: T, value: string) => T;
