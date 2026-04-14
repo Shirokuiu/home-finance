@@ -20,16 +20,25 @@ function AppTableEditableCell<T>({
   ...restProps
 }: AppEditableCellProps<T>) {
   const form = useContext(EditableContext)!;
-  const { editing, inputRef, cellRef, toggleEdit, handleNavigationKeyDown, restoreCellFocus } =
-    useEditableCellNavigation({
-      editable,
-      dataIndex,
-      record,
-      rowIndex,
-      columnIndex,
-      form,
-      getEditValue,
-    });
+  const {
+    editing,
+    inputRef,
+    cellRef,
+    tdRef,
+    isNavigable,
+    toggleEdit,
+    handleNavigationKeyDown,
+    restoreCellFocus,
+  } = useEditableCellNavigation({
+    children,
+    editable,
+    dataIndex,
+    record,
+    rowIndex,
+    columnIndex,
+    form,
+    getEditValue,
+  });
 
   const save = async () => {
     try {
@@ -67,18 +76,15 @@ function AppTableEditableCell<T>({
         />
       </Form.Item>
     ) : (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
       <div
         ref={cellRef}
         className={valueWrapClassName}
         style={{ paddingInlineEnd: 24 }}
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
-        data-app-table-cell="true"
-        data-row-index={rowIndex}
-        data-column-index={columnIndex}
+        data-app-table-focus-target="true"
         onClick={toggleEdit}
-        onKeyDown={handleNavigationKeyDown}
       >
         {children}
       </div>
@@ -87,7 +93,18 @@ function AppTableEditableCell<T>({
     childNode = <div className={valueWrapClassName}>{children}</div>;
   }
 
-  return <td {...restProps}>{childNode}</td>;
+  return (
+    <td
+      {...restProps}
+      ref={tdRef}
+      data-app-table-cell={isNavigable ? 'true' : undefined}
+      data-row-index={isNavigable ? rowIndex : undefined}
+      data-column-index={isNavigable ? columnIndex : undefined}
+      onKeyDown={isNavigable ? handleNavigationKeyDown : undefined}
+    >
+      {childNode}
+    </td>
+  );
 }
 
 export default AppTableEditableCell;
