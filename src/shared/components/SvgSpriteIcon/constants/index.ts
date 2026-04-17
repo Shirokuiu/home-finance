@@ -4,6 +4,8 @@ export const SvgSpriteIconId = {
   Calendar: 'calendar',
   PiggyBank: 'piggy-bank',
   CaretUp: 'caret-up',
+  Trash: 'trash',
+  Restore: 'restore',
 } as const;
 
 export const SvgSpriteIconSize = {

@@ -1,4 +1,4 @@
-import { Flex, Table, type TableProps } from 'antd';
+import { Flex, type TableProps } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { PageRoutes } from 'src/shared/constants/routes';
 import { DEFAULT_TRANSACTION_COLUMNS } from 'src/shared/components/AppTable/constants';
@@ -6,6 +6,7 @@ import {
   TransactionAmountType,
   type TransactionDataType,
 } from 'src/shared/components/AppTable/types';
+import { AppTable } from 'src/shared/components/AppTable';
 
 import './recent-transaction-module.scss';
 
@@ -43,7 +44,7 @@ function RecentTransactionsModule() {
           Все операции
         </NavLink>
       </Flex>
-      <Table pagination={false} columns={DEFAULT_TRANSACTION_COLUMNS} dataSource={mockDataSource} />
+      <AppTable columns={DEFAULT_TRANSACTION_COLUMNS} dataSource={mockDataSource} />
     </div>
   );
 }

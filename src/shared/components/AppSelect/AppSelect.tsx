@@ -2,7 +2,7 @@ import { ConfigProvider, Select, type SelectProps } from 'antd';
 
 import './app-select.scss';
 
-function AppSelect({ size, className = '', options, defaultValue }: SelectProps) {
+function AppSelect(props: SelectProps) {
   return (
     <ConfigProvider
       theme={{
@@ -14,16 +14,12 @@ function AppSelect({ size, className = '', options, defaultValue }: SelectProps)
             hoverBorderColor: '#b1b8d1',
             activeBorderColor: '#7e8299',
             colorText: '#7e8299',
+            colorPrimary: '#7e8299',
           },
         },
       }}
     >
-      <Select
-        defaultValue={defaultValue}
-        size={size}
-        options={options}
-        className={`app-select ${className}`.trim()}
-      />
+      <Select {...props} className={`app-select ${props.className}`.trim()} />
     </ConfigProvider>
   );
 }

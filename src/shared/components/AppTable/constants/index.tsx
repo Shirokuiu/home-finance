@@ -1,11 +1,14 @@
-import { Flex, type TableProps } from 'antd';
-import CategoryIcon from 'src/shared/components/CategoryIcon/CategoryIcon';
 import {
   TransactionAmountType,
   type AppTableColumn,
   type TransactionDataType,
-  type TransactionDataTypeAmount,
 } from 'src/shared/components/AppTable/types';
+import { AppTableEditableRow, renderDefaultDateColumn } from 'src/shared/components/AppTable/index';
+import AppTableEditableCell from 'src/shared/components/AppTable/components/AppTableEditableCell/AppTableEditableCell';
+import {
+  renderDefaultAmountColumn,
+  renderDefaultCategoryColumn,
+} from 'src/shared/components/AppTable/helpers';
 
 export const AmountTypeColorMap = {
   [TransactionAmountType.Income]: 'tp-color-green-500',
@@ -21,12 +24,6 @@ export const AppTableTransactionCategoryColumn: AppTableColumn<TransactionDataTy
   key: 'category',
   title: 'Категория',
   dataIndex: 'category',
-  render: (value: TransactionDataType['category']) => (
-    <Flex align="center">
-      <CategoryIcon />
-      {value}
-    </Flex>
-  ),
 } as const;
 
 export const AppTableTransactionDescriptionColumn: AppTableColumn<TransactionDataType> = {
@@ -39,28 +36,24 @@ export const AppTableTransactionAmountColumn: AppTableColumn<TransactionDataType
   key: 'amount',
   title: 'Сумма',
   dataIndex: 'amount',
-  render: ({ value, type }: TransactionDataTypeAmount) => {
-    return (
-      <span className={`tp-14-16-500 ${AmountTypeColorMap[type]}`}>
-        {AmountTypeSignMap[type]}
-        {value} ₽
-      </span>
-    );
-  },
 } as const;
 
 export const AppTableTransactionDateColumn: AppTableColumn<TransactionDataType> = {
   key: 'date',
   title: 'Дата',
   dataIndex: 'date',
-  render: (value: TransactionDataType['date']) => (
-    <span className="tp-color-gray-300">{value}</span>
-  ),
 } as const;
 
-export const DEFAULT_TRANSACTION_COLUMNS: TableProps<TransactionDataType>['columns'] = [
-  AppTableTransactionCategoryColumn,
+export const DEFAULT_TRANSACTION_COLUMNS: AppTableColumn<TransactionDataType>[] = [
+  { ...AppTableTransactionCategoryColumn, render: renderDefaultCategoryColumn },
   AppTableTransactionDescriptionColumn,
-  AppTableTransactionAmountColumn,
-  AppTableTransactionDateColumn,
+  { ...AppTableTransactionAmountColumn, render: renderDefaultAmountColumn },
+  { ...AppTableTransactionDateColumn, render: renderDefaultDateColumn },
 ];
+
+export const DefaultEditableComponents = {
+  body: {
+    row: AppTableEditableRow,
+    cell: AppTableEditableCell,
+  },
+} as const;

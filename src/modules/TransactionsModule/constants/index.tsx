@@ -1,0 +1,97 @@
+import { type SelectProps } from 'antd';
+
+export const SIGN_CAPTURE_GROUP_INDEX = 1;
+
+export const AmountRegex = {
+  Sign: /^\s*([+-])/,
+  Digits: /\D/g,
+  LeadingZeroes: /^0+(?=\d)/,
+  Thousands: /\B(?=(\d{3})+(?!\d))/g,
+};
+
+export const DateInputFormatConfig = {
+  Format: 'dd.MM.yyyy',
+  Regex: {
+    SeparatorNormalize: /,/g,
+    SeparatorSpacesNormalize: /\s*\.\s*/g,
+    FullDate: /^(\d{2})\.(\d{2})\.(\d{4})$/,
+    DayMonth: /^(\d{2})\.(\d{2})$/,
+    DayOnly: /^(\d{2})$/,
+    DayYearWithoutMonth: /^(\d{2})\.\.(\d{4})$/,
+  },
+  GroupIndex: {
+    Day: 1,
+    Month: 2,
+    Year: 3,
+    YearWithoutMonth: 2,
+  },
+} as const;
+
+export const CATEGORY_OPTIONS: SelectProps['options'] = [
+  {
+    label: 'Все категории',
+    value: 'CATEGORIES_ALL',
+  },
+  {
+    label: 'Еда',
+    value: 'CATEGORIES_FOOD',
+  },
+  {
+    label: 'Развлечения',
+    value: 'CATEGORIES_FUN',
+  },
+  {
+    label: 'Квартплата',
+    value: 'CATEGORIES_UTILITIES',
+  },
+  {
+    label: 'Очень длинная категория Очень длинная категория Очень длинная категория',
+    value: 'TEST',
+  },
+] as const;
+
+export const CATEGORY_TABLE_OPTIONS: SelectProps['options'] = [
+  {
+    label: 'Еда',
+    value: 'CATEGORIES_FOOD',
+  },
+  {
+    label: 'Развлечения',
+    value: 'CATEGORIES_FUN',
+  },
+  {
+    label: 'Очень длинная категория Очень длинная категория Очень длинная категория',
+    value: 'TEST',
+  },
+] as const;
+
+export const PERIOD_OPTIONS: SelectProps['options'] = [
+  {
+    label: 'С начала года',
+    value: 'PERIOD_CURRENT_YEAR',
+  },
+  {
+    label: 'За последние 7 дней',
+    value: 'PERIOD_7DAYS',
+  },
+  {
+    label: 'За последний месяц',
+    value: 'PERIOD_MONTH',
+  },
+  {
+    label: 'За последние 3 месяца',
+    value: 'PERIOD_3MONTH',
+  },
+  {
+    label: 'За последние пол года',
+    value: 'PERIOD_6MONTH',
+  },
+  {
+    label: 'За последний год',
+    value: 'PERIOD_YEAR',
+  },
+  {
+    label: 'За все время',
+    value: 'PERIOD_ALL',
+  },
+] as const;

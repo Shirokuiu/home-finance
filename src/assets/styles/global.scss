@@ -30,3 +30,8 @@ img {
   outline: none;
 }
 
+// NOTE Фикс баги селекта при режиме - showSearch
+.ant-select-content-has-search-value {
+  color: transparent !important;
+}
+
