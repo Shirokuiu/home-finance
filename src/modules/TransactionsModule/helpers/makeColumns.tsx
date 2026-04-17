@@ -31,16 +31,17 @@ export const makeColumns = ({
   {
     ...AppTableTransactionCategoryColumn,
     width: '350px',
+    hasEditableClassName: false,
     isActive: ({ key }) => !removedKeys.includes(key),
     render: (_, { key }) => (
       <>
-        <AppTableCategoryCellDefault isActive={!removedKeys.includes(key)}>
+        <AppTableCategoryCellDefault>
           <AppSelect
             options={CATEGORY_TABLE_OPTIONS}
             defaultValue="CATEGORIES_FOOD"
             popupMatchSelectWidth={400}
             disabled={removedKeys.includes(key)}
-            className="transactions-module__categpry-select"
+            className="transactions-module__category-select"
           />
         </AppTableCategoryCellDefault>
       </>
@@ -76,6 +77,7 @@ export const makeColumns = ({
       <>
         {removedKeys?.includes(key) ? (
           <AppButton
+            type="text"
             icon={<SvgSpriteIcon id={SvgSpriteIconId.Restore} />}
             onClick={() => {
               onRowRestore?.(key);
@@ -83,7 +85,7 @@ export const makeColumns = ({
           />
         ) : (
           <AppButton
-            danger
+            type="text"
             icon={<SvgSpriteIcon id={SvgSpriteIconId.Trash} />}
             onClick={() => {
               onRowRemove?.(key);

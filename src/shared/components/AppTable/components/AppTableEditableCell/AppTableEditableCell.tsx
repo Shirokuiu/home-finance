@@ -9,6 +9,7 @@ import './app-table-editable-cell.scss';
 function AppTableEditableCell<T>({
   editable,
   isActive = true,
+  hasEditableClassName = true,
   children,
   columnIndex,
   dataIndex,
@@ -58,11 +59,16 @@ function AppTableEditableCell<T>({
 
   let childNode = children;
   const valueWrapClassName = useMemo(
-    () =>
-      `app-table-editable-cell__value-wrap${
-        isActive ? '' : ' app-table-editable-cell__value-wrap--no-active'
-      }`,
-    [isActive],
+    () => {
+      if (!isActive) {
+        return hasEditableClassName
+          ? 'app-table-editable-cell__value-wrap app-table-editable-cell__value-wrap--no-active'
+          : 'app-table-editable-cell__value-wrap--no-active';
+      }
+
+      return hasEditableClassName ? 'app-table-editable-cell__value-wrap' : '';
+    },
+    [hasEditableClassName, isActive],
   );
 
   if (editable) {
@@ -79,7 +85,7 @@ function AppTableEditableCell<T>({
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
       <div
         ref={cellRef}
-        className={valueWrapClassName}
+        className={valueWrapClassName || undefined}
         style={{ paddingInlineEnd: 24 }}
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
@@ -90,7 +96,7 @@ function AppTableEditableCell<T>({
       </div>
     );
   } else if (!isActive) {
-    childNode = <div className={valueWrapClassName}>{children}</div>;
+    childNode = <div className={valueWrapClassName || undefined}>{children}</div>;
   }
 
   return (

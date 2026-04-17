@@ -30,6 +30,7 @@ export type AppTableColumn<T = Record<string, unknown>> = ColumnType<T> & AppTab
 export type AppTableEditableProps<T> = {
   editable?: boolean | ((record: T) => boolean);
   isActive?: boolean | ((record: T) => boolean);
+  hasEditableClassName?: boolean | ((record: T) => boolean);
   handleSave?: (record: T) => void;
   getEditValue?: (record: T) => string;
   applyEditValue?: (record: T, value: string) => T;
@@ -43,6 +44,7 @@ export type AppTableCellProps<T> = HTMLAttributes<HTMLElement> &
     record: T;
     editable?: boolean;
     isActive?: boolean;
+    hasEditableClassName?: boolean;
     rowIndex?: number;
     handleSave: (record: T) => void;
     getEditValue?: (record: T) => string;

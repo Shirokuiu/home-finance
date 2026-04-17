@@ -43,12 +43,17 @@ export const useEditableTable = <T extends { key: Key }>({
           const isEditable =
             typeof col.editable === 'function' ? col.editable(record) : col.editable;
           const isActive = typeof col.isActive === 'function' ? col.isActive(record) : col.isActive;
+          const hasEditableClassName =
+            typeof col.hasEditableClassName === 'function'
+              ? col.hasEditableClassName(record)
+              : col.hasEditableClassName;
 
           return {
             ...baseCellProps,
             record,
             editable: isEditable,
             isActive,
+            hasEditableClassName: hasEditableClassName ?? true,
             dataIndex: typeof col.dataIndex === 'string' ? col.dataIndex : String(col.key ?? ''),
             cellTitle,
             handleSave,

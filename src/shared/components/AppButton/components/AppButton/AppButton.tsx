@@ -15,6 +15,7 @@ function AppButton({ icon, type, size, style, danger, onClick, children }: Butto
             defaultColor: '#7e8299',
             defaultHoverColor: '#7e8299',
             defaultActiveColor: '#7e8299',
+            textTextColor: '#7e8299',
           },
         },
       }}
