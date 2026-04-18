@@ -17,6 +17,8 @@ function TransactionsFilterCategories() {
       size="large"
       options={options}
       defaultValue="CATEGORIES_ALL"
+      showSearch={false}
+      allowClear
       maxTagCount="responsive"
       maxTagPlaceholder={(omittedValues) => (
         <TransactionsFilterCategoriesMaxTagPlaceholder omittedValues={omittedValues} />
