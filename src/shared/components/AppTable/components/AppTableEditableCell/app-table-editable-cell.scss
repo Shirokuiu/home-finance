@@ -31,6 +31,9 @@
     transform: translateX(-8px);
 
     &--textarea {
+      padding-top: 5px;
+      padding-bottom: 5px;
+
       .ant-input {
         resize: none;
       }
