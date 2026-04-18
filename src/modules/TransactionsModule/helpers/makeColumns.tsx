@@ -37,6 +37,7 @@ export const makeColumns = ({
       <>
         <AppTableCategoryCellDefault>
           <AppSelect
+            disableOpenOnArrowDown
             options={CATEGORY_TABLE_OPTIONS}
             defaultValue="CATEGORIES_FOOD"
             popupMatchSelectWidth={400}

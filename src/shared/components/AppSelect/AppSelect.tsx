@@ -1,8 +1,23 @@
 import { ConfigProvider, Select, type SelectProps } from 'antd';
+import { useAppSelect } from 'src/shared/components/AppSelect/hooks';
 
 import './app-select.scss';
 
-function AppSelect(props: SelectProps) {
+function AppSelect(props: SelectProps & { readonly disableOpenOnArrowDown?: boolean }) {
+  const {
+    disableOpenOnArrowDown = false,
+    className,
+    onOpenChange,
+    onKeyDown,
+    ...selectProps
+  } = props;
+
+  const { open, handleOpenChange, handleKeyDown } = useAppSelect({
+    disableOpenOnArrowDown,
+    onOpenChange,
+    onKeyDown,
+  });
+
   return (
     <ConfigProvider
       theme={{
@@ -19,7 +34,13 @@ function AppSelect(props: SelectProps) {
         },
       }}
     >
-      <Select {...props} className={`app-select ${props.className}`.trim()} />
+      <Select
+        {...selectProps}
+        open={disableOpenOnArrowDown ? open : undefined}
+        className={`app-select ${className}`.trim()}
+        onKeyDown={handleKeyDown}
+        onOpenChange={handleOpenChange}
+      />
     </ConfigProvider>
   );
 }

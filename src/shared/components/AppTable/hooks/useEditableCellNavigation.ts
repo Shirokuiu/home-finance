@@ -16,6 +16,12 @@ const FOCUSABLE_SELECTOR = [
   '[role="combobox"]',
 ].join(', ');
 
+const isOpenSelectTarget = (target: HTMLElement | null) =>
+  Boolean(
+    target?.closest('.ant-select-open') ||
+      target?.closest<HTMLElement>('[role="combobox"][aria-expanded="true"]'),
+  );
+
 export const useEditableCellNavigation = <T>({
   children,
   editable,
@@ -169,6 +175,10 @@ export const useEditableCellNavigation = <T>({
     }
 
     if (!isCellFocusTarget && !isInteractiveChild) {
+      return;
+    }
+
+    if (isOpenSelectTarget(target)) {
       return;
     }
 
