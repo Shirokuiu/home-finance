@@ -31,6 +31,7 @@ export type AppTableEditableProps<T> = {
   editable?: boolean | ((record: T) => boolean);
   isActive?: boolean | ((record: T) => boolean);
   hasEditableClassName?: boolean | ((record: T) => boolean);
+  editControl?: 'input' | 'textarea';
   handleSave?: (record: T) => void;
   getEditValue?: (record: T) => string;
   applyEditValue?: (record: T, value: string) => T;
@@ -45,6 +46,7 @@ export type AppTableCellProps<T> = HTMLAttributes<HTMLElement> &
     editable?: boolean;
     isActive?: boolean;
     hasEditableClassName?: boolean;
+    editControl?: 'input' | 'textarea';
     rowIndex?: number;
     handleSave: (record: T) => void;
     getEditValue?: (record: T) => string;

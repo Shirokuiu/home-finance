@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
-import type { InputRef } from 'antd';
 import type { FormInstance } from 'antd/es/form';
+
+type EditableControlRef = {
+  focus: () => void;
+} | null;
 
 const FOCUSABLE_SELECTOR = [
   'button:not([disabled])',
@@ -12,6 +15,12 @@ const FOCUSABLE_SELECTOR = [
   '[role="button"]',
   '[role="combobox"]',
 ].join(', ');
+
+const isOpenSelectTarget = (target: HTMLElement | null) =>
+  Boolean(
+    target?.closest('.ant-select-open') ||
+      target?.closest<HTMLElement>('[role="combobox"][aria-expanded="true"]'),
+  );
 
 export const useEditableCellNavigation = <T>({
   children,
@@ -33,7 +42,7 @@ export const useEditableCellNavigation = <T>({
   getEditValue?: (record: T) => string;
 }) => {
   const [editing, setEditing] = useState(false);
-  const inputRef = useRef<InputRef>(null);
+  const inputRef = useRef<EditableControlRef>(null);
   const cellRef = useRef<HTMLDivElement>(null);
   const tdRef = useRef<HTMLTableCellElement>(null);
   const [isNavigable, setIsNavigable] = useState(Boolean(editable));
@@ -41,6 +50,20 @@ export const useEditableCellNavigation = <T>({
   useEffect(() => {
     if (editing) {
       inputRef.current?.focus();
+
+      requestAnimationFrame(() => {
+        const editableElement = tdRef.current?.querySelector<HTMLInputElement | HTMLTextAreaElement>(
+          'input, textarea',
+        );
+
+        if (!editableElement) {
+          return;
+        }
+
+        const caretPosition = editableElement.value.length;
+
+        editableElement.setSelectionRange(caretPosition, caretPosition);
+      });
     }
   }, [editing]);
 
@@ -155,6 +178,10 @@ export const useEditableCellNavigation = <T>({
       return;
     }
 
+    if (isOpenSelectTarget(target)) {
+      return;
+    }
+
     const directionsMap = {
       ArrowUp: [-1, 0],
       ArrowDown: [1, 0],
@@ -178,9 +205,13 @@ export const useEditableCellNavigation = <T>({
     });
   };
 
+  const setInputRef = (node: EditableControlRef) => {
+    inputRef.current = node;
+  };
+
   return {
     editing,
-    inputRef,
+    setInputRef,
     cellRef,
     tdRef,
     isNavigable: editable || isNavigable,

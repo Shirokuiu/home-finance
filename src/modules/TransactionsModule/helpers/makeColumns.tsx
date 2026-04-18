@@ -37,6 +37,7 @@ export const makeColumns = ({
       <>
         <AppTableCategoryCellDefault>
           <AppSelect
+            disableOpenOnArrowDown
             options={CATEGORY_TABLE_OPTIONS}
             defaultValue="CATEGORIES_FOOD"
             popupMatchSelectWidth={400}
@@ -49,8 +50,16 @@ export const makeColumns = ({
   },
   {
     ...AppTableTransactionDescriptionColumn,
+    editControl: 'textarea',
     editable: ({ key }) => !removedKeys.includes(key),
     isActive: ({ key }) => !removedKeys.includes(key),
+    render: (value: TransactionDataType['description']) => {
+      if (!value) {
+        return <span className="tp-style-italic tp-color-gray-300">Без описания</span>;
+      }
+
+      return <span style={{ whiteSpace: 'pre-wrap' }}>{value}</span>;
+    },
   },
   {
     ...AppTableTransactionAmountColumn,

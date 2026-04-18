@@ -1,5 +1,7 @@
 .app-table-editable-cell {
   &__value-wrap {
+    box-sizing: border-box;
+    min-height: 34px;
     padding: 5px 11px;
     border: 1px solid transparent;
     border-radius: 2px;
@@ -27,5 +29,14 @@
 
   &__input {
     transform: translateX(-8px);
+
+    &--textarea {
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      .ant-input {
+        resize: none;
+      }
+    }
   }
 }

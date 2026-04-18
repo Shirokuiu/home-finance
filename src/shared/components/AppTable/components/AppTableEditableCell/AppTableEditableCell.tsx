@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useMemo, type KeyboardEventHandler } from 'react';
 import { Input, Form } from 'antd';
 import { EditableContext } from 'src/shared/components/AppTable/context';
 import { useEditableCellNavigation } from 'src/shared/components/AppTable/hooks';
@@ -10,6 +10,7 @@ function AppTableEditableCell<T>({
   editable,
   isActive = true,
   hasEditableClassName = true,
+  editControl = 'input',
   children,
   columnIndex,
   dataIndex,
@@ -23,7 +24,7 @@ function AppTableEditableCell<T>({
   const form = useContext(EditableContext)!;
   const {
     editing,
-    inputRef,
+    setInputRef,
     cellRef,
     tdRef,
     isNavigable,
@@ -57,29 +58,51 @@ function AppTableEditableCell<T>({
     }
   };
 
-  let childNode = children;
-  const valueWrapClassName = useMemo(
-    () => {
-      if (!isActive) {
-        return hasEditableClassName
-          ? 'app-table-editable-cell__value-wrap app-table-editable-cell__value-wrap--no-active'
-          : 'app-table-editable-cell__value-wrap--no-active';
-      }
+  const handleTextAreaKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      save();
+    }
+  };
 
-      return hasEditableClassName ? 'app-table-editable-cell__value-wrap' : '';
-    },
-    [hasEditableClassName, isActive],
-  );
+  let childNode = children;
+  const valueWrapClassName = useMemo(() => {
+    if (!isActive) {
+      return hasEditableClassName
+        ? 'app-table-editable-cell__value-wrap app-table-editable-cell__value-wrap--no-active'
+        : 'app-table-editable-cell__value-wrap--no-active';
+    }
+
+    return hasEditableClassName ? 'app-table-editable-cell__value-wrap' : '';
+  }, [hasEditableClassName, isActive]);
 
   if (editable) {
     childNode = editing ? (
       <Form.Item style={{ margin: 0 }} name={dataIndex}>
-        <Input
-          ref={inputRef}
-          className="app-table-editable-cell__input"
-          onPressEnter={save}
-          onBlur={save}
-        />
+        {editControl === 'textarea' ? (
+          <Input.TextArea
+            ref={(node) => {
+              setInputRef(node);
+            }}
+            autoSize={{ minRows: 1 }}
+            className="app-table-editable-cell__input app-table-editable-cell__input--textarea"
+            onKeyDown={handleTextAreaKeyDown}
+            onBlur={() => {
+              void save();
+            }}
+          />
+        ) : (
+          <Input
+            ref={setInputRef}
+            className="app-table-editable-cell__input"
+            onPressEnter={() => {
+              void save();
+            }}
+            onBlur={() => {
+              void save();
+            }}
+          />
+        )}
       </Form.Item>
     ) : (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events

@@ -134,6 +134,10 @@ body {
   @include mixins.tp-color-red-500;
 }
 
+.tp-style-italic {
+  font-style: italic;
+}
+
 *::input-placeholder {
   @include mixins.tp-19-23-400;
   @include mixins.tp-color-gray-900;
