@@ -195,9 +195,13 @@ export const useEditableCellNavigation = <T>({
     });
   };
 
+  const setInputRef = (node: EditableControlRef) => {
+    inputRef.current = node;
+  };
+
   return {
     editing,
-    inputRef,
+    setInputRef,
     cellRef,
     tdRef,
     isNavigable: editable || isNavigable,
