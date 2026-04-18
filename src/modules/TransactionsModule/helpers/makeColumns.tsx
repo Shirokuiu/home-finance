@@ -51,6 +51,13 @@ export const makeColumns = ({
     ...AppTableTransactionDescriptionColumn,
     editable: ({ key }) => !removedKeys.includes(key),
     isActive: ({ key }) => !removedKeys.includes(key),
+    render: (value: TransactionDataType['description']) => {
+      if (!value) {
+        return <span className="tp-style-italic tp-color-gray-300">Без описания</span>;
+      }
+
+      return value;
+    },
   },
   {
     ...AppTableTransactionAmountColumn,
