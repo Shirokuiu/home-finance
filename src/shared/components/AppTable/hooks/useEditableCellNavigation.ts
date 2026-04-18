@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
-import type { InputRef } from 'antd';
 import type { FormInstance } from 'antd/es/form';
+
+type EditableControlRef = {
+  focus: () => void;
+} | null;
 
 const FOCUSABLE_SELECTOR = [
   'button:not([disabled])',
@@ -33,7 +36,7 @@ export const useEditableCellNavigation = <T>({
   getEditValue?: (record: T) => string;
 }) => {
   const [editing, setEditing] = useState(false);
-  const inputRef = useRef<InputRef>(null);
+  const inputRef = useRef<EditableControlRef>(null);
   const cellRef = useRef<HTMLDivElement>(null);
   const tdRef = useRef<HTMLTableCellElement>(null);
   const [isNavigable, setIsNavigable] = useState(Boolean(editable));
@@ -41,6 +44,20 @@ export const useEditableCellNavigation = <T>({
   useEffect(() => {
     if (editing) {
       inputRef.current?.focus();
+
+      requestAnimationFrame(() => {
+        const editableElement = tdRef.current?.querySelector<HTMLInputElement | HTMLTextAreaElement>(
+          'input, textarea',
+        );
+
+        if (!editableElement) {
+          return;
+        }
+
+        const caretPosition = editableElement.value.length;
+
+        editableElement.setSelectionRange(caretPosition, caretPosition);
+      });
     }
   }, [editing]);
 

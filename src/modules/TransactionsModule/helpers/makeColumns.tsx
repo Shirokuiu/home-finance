@@ -49,6 +49,7 @@ export const makeColumns = ({
   },
   {
     ...AppTableTransactionDescriptionColumn,
+    editControl: 'textarea',
     editable: ({ key }) => !removedKeys.includes(key),
     isActive: ({ key }) => !removedKeys.includes(key),
     render: (value: TransactionDataType['description']) => {
@@ -56,7 +57,7 @@ export const makeColumns = ({
         return <span className="tp-style-italic tp-color-gray-300">Без описания</span>;
       }
 
-      return value;
+      return <span style={{ whiteSpace: 'pre-wrap' }}>{value}</span>;
     },
   },
   {

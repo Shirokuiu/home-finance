@@ -29,5 +29,11 @@
 
   &__input {
     transform: translateX(-8px);
+
+    &--textarea {
+      .ant-input {
+        resize: none;
+      }
+    }
   }
 }

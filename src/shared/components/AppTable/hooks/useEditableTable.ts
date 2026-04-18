@@ -54,6 +54,7 @@ export const useEditableTable = <T extends { key: Key }>({
             editable: isEditable,
             isActive,
             hasEditableClassName: hasEditableClassName ?? true,
+            editControl: col.editControl ?? 'input',
             dataIndex: typeof col.dataIndex === 'string' ? col.dataIndex : String(col.key ?? ''),
             cellTitle,
             handleSave,
