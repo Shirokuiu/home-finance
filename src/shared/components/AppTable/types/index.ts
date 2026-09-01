@@ -2,11 +2,7 @@ import type { ObjectValues } from 'src/shared/types/shared';
 import type { TableProps } from 'antd';
 import type { ColumnType } from 'antd/es/table';
 import type { HTMLAttributes, PropsWithChildren, ReactNode, TdHTMLAttributes } from 'react';
-
-export const TransactionAmountType = {
-  Income: 'income',
-  Expense: 'expense',
-} as const;
+import type { TransactionAmountType } from 'src/shared/types/transactions';
 
 export type TransactionDataType = {
   key: string;

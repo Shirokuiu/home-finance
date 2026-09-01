@@ -5,8 +5,12 @@ import { PageRoutes } from 'src/shared/constants/routes';
 import WrappedSvgSprite from 'src/shared/hocks/WrappedSvgSprite/WrappedSvgSprite';
 import RootPage from 'src/pages/RootPage/RootPage';
 import { lazy, Suspense } from 'react';
+import dayjs from 'dayjs';
 
 const TransactionsPage = lazy(() => import('src/pages/TransactionsPage/TransactionsPage'));
+const CategoriesPage = lazy(() => import('src/pages/CategoriesPage/CategoriesPage'));
+
+dayjs.locale('ru');
 
 function App() {
   return (
@@ -21,6 +25,14 @@ function App() {
               </Suspense>
             }
             path={PageRoutes.Transactions}
+          />
+          <Route
+            element={
+              <Suspense fallback={<>...</>}>
+                <CategoriesPage />
+              </Suspense>
+            }
+            path={PageRoutes.Categories}
           />
         </Route>
       </Routes>

@@ -1,6 +1,6 @@
 import { Button, type ButtonProps, ConfigProvider } from 'antd';
 
-function AppButtonAdd(props: ButtonProps) {
+function AppButtonPrimary(props: ButtonProps) {
   return (
     <ConfigProvider
       theme={{
@@ -24,4 +24,4 @@ function AppButtonAdd(props: ButtonProps) {
   );
 }
 
-export default AppButtonAdd;
+export default AppButtonPrimary;

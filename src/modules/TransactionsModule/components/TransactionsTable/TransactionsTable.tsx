@@ -1,11 +1,9 @@
 import { type TableProps } from 'antd';
-import {
-  TransactionAmountType,
-  type TransactionDataType,
-} from 'src/shared/components/AppTable/types';
+import { type TransactionDataType } from 'src/shared/components/AppTable/types';
 import { AppTable } from 'src/shared/components/AppTable';
 import { useMemo, useState } from 'react';
 import { makeColumns } from 'src/modules/TransactionsModule/helpers';
+import { TransactionAmountType } from 'src/shared/types/transactions';
 
 const mockDataSource: TableProps<TransactionDataType>['dataSource'] = [
   {
