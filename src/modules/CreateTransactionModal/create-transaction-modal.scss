@@ -1,0 +1,10 @@
+.create-transaction-modal {
+  &__form-item {
+    flex: 1 1 0;
+    min-width: 0;
+
+    .ant-input-number {
+      width: 100%;
+    }
+  }
+}

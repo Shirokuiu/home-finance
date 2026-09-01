@@ -1,9 +1,7 @@
-import {
-  TransactionAmountType,
-  type TransactionDataTypeAmount,
-} from 'src/shared/components/AppTable/types';
+import { type TransactionDataTypeAmount } from 'src/shared/components/AppTable/types';
 import { AmountRegex, SIGN_CAPTURE_GROUP_INDEX } from 'src/modules/TransactionsModule/constants';
 import { isAmountSign } from 'src/modules/TransactionsModule/helpers/isAmountSign';
+import { TransactionAmountType } from 'src/shared/types/transactions';
 
 export const normalizeAmountInput = ({
   input,

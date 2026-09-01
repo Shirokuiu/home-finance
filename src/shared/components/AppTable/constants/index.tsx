@@ -1,5 +1,4 @@
 import {
-  TransactionAmountType,
   type AppTableColumn,
   type TransactionDataType,
 } from 'src/shared/components/AppTable/types';
@@ -9,6 +8,7 @@ import {
   renderDefaultAmountColumn,
   renderDefaultCategoryColumn,
 } from 'src/shared/components/AppTable/helpers';
+import { TransactionAmountType } from 'src/shared/types/transactions';
 
 export const AmountTypeColorMap = {
   [TransactionAmountType.Income]: 'tp-color-green-500',

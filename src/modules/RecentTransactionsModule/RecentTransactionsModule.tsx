@@ -2,11 +2,9 @@ import { Flex, type TableProps } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { PageRoutes } from 'src/shared/constants/routes';
 import { DEFAULT_TRANSACTION_COLUMNS } from 'src/shared/components/AppTable/constants';
-import {
-  TransactionAmountType,
-  type TransactionDataType,
-} from 'src/shared/components/AppTable/types';
+import { type TransactionDataType } from 'src/shared/components/AppTable/types';
 import { AppTable } from 'src/shared/components/AppTable';
+import { TransactionAmountType } from 'src/shared/types/transactions';
 
 import './recent-transaction-module.scss';
 
